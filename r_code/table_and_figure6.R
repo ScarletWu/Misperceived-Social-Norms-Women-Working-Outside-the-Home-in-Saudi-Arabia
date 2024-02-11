@@ -21,9 +21,9 @@ library(kableExtra)
 
 
 # Read the dataset
-main_clean <- read_dta(here("inputs/data/01_main_exp_clean.dta"))
-follow_up_clean <- read_dta(here("inputs/data/02_follow_up_clean.dta"))
-online_survey_clean <- read_dta(here("inputs/data/03_1st_online_svy_clean.dta"))
+main_clean <- read_dta(here("inputs/data/clean_data/01_main_exp_clean.dta"))
+follow_up_clean <- read_dta(here("inputs/data/clean_data/02_follow_up_clean.dta"))
+online_survey_clean <- read_dta(here("inputs/data/clean_data/original03_1st_online_svy_clean.dta"))
 
 
 # Test
@@ -149,7 +149,7 @@ row.names(table1)= c("Observations","Age","","Number of Children","","College De
 table1 |> kbl(booktabs = T, col.names = c("All","Control","Treatment"), align=rep('c', 4)) |> 
   row_spec(1, hline_after = TRUE) |> kable_styling()
 
-
+write.csv(table1, file = "/cloud/project/outputs/table/table1.csv", row.names = FALSE)
 
 
 
@@ -174,7 +174,8 @@ data_frame$outside_value <- as.numeric(data_frame$outside_value)
 
 
 
-data_frame |>
+figure6 <-
+  data_frame |>
   ggplot(aes(x = outside_value)) +
   theme_minimal() +
   stat_ecdf(aes(color = group, linetype = group), linewidth = 0.5) +
@@ -196,3 +197,6 @@ data_frame |>
            hjust = 1,
            size = 2,
            col = c("black","black"))
+
+ggsave("/cloud/project/outputs/figures/figure6.png", plot = figure6)
+
