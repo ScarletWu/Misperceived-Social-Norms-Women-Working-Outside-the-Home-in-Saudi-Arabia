@@ -1,6 +1,5 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "Misperceived Social Norms about Women Working Outside the Home and Its Effect on Women in Saudi Arabia"
 author: 
   - Boxuan Yi
   - Ruoxian Wu
@@ -25,7 +24,7 @@ install.packages('readr')
 install.packages('here')
 install.packages('janitor')
 install.packages('knitr')
-install.packages("kableExtra")
+install.packages('kableExtra')
 ```
 
 ```{r}
