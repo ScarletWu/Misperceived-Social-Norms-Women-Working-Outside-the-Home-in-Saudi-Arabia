@@ -49,6 +49,6 @@ df$interaction <- with(df, condition2 * outside_wedge_pos)
 df <- df %>%
   select(-condition, -marital, -employed_ever, -num_know, -num_mutual_friends, -q45_4_p2, -q46_1_p2, -q43_1_p2, -count, -condition_txt, -glowork_choice, -second_order_total, -signed_up, -no_wife_number)
 
-# Save the cleaned data (replace the path with your actual directory for cleaned data)
+# Save the cleaned data
 clean_data_path <- file.path(datadir, "clean_data/01_main_exp_clean.dta")
 write_dta(df, clean_data_path)
