@@ -35,9 +35,9 @@ library(kableExtra)
 #| message: false
 #| echo: false
 # Read the dataset
-main_clean <- read_dta(here("inputs/data/01_main_exp_clean.dta"))
-follow_up_clean <- read_dta(here("inputs/data/02_follow_up_clean.dta"))
-online_survey_clean <- read_dta(here("inputs/data/03_1st_online_svy_clean.dta"))
+main_clean <- read_dta(here("inputs/data/01_main_exp_clean_original.dta"))
+follow_up_clean <- read_dta(here("inputs/data/02_follow_up_clean_original.dta"))
+online_survey_clean <- read_dta(here("inputs/data/03_1st_online_svy_clean_original.dta"))
 ```
 
 ```{r}
