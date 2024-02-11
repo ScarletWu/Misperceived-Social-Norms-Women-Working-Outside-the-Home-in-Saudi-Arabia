@@ -1,69 +1,198 @@
+
+
+# Install packages we need
+install.packages('haven')
+install.packages('dplyr')
+install.packages('ggplot2')
+install.packages('readr')
+install.packages('here')
+install.packages('janitor')
+install.packages('knitr')
+
+
 library(haven)
 library(dplyr)
-
-# Define the directory paths
-datadir <- "/cloud/project/inputs/data/"
-raw_data_path <- file.path(datadir, "raw_data/01_main_exp_raw2.dta")
-
-# Load the main experiment dataset
-df_main_exp <- read_dta(raw_data_path)
-
-# Adjust 'session' based on specific 'digits' values
-df_main_exp <- df_main_exp %>%
-  mutate(dup_index = row_number() + 1000) %>%
-  mutate(session = case_when(
-    session == 1 & digits == 136 ~ dup_index,
-    session == 5 & digits == 430 ~ dup_index,
-    session == 6 & digits == 651 ~ dup_index,
-    session == 6 & digits == 922 ~ dup_index,
-    session == 7 & digits == 646 ~ dup_index,
-    session == 9 & digits == 16 ~ dup_index,
-    session == 9 & digits == 449 ~ dup_index,
-    session == 12 & digits == 282 ~ dup_index,
-    session == 13 & digits == 880 ~ dup_index,
-    session == 15 & digits == 84 ~ dup_index,
-    session == 17 & digits == 341 ~ dup_index,
-    session == 17 & digits == 966 ~ dup_index,
-    TRUE ~ as.double(session)
-  ))
-
-# Load the follow-up dataset
-follow_up_path1 <- file.path(datadir, "raw_data/02_follow_up_raw1.dta")
-df_follow_up1 <- read_dta(follow_up_path1)
-
-# Merge the main experiment and follow-up datasets
-df_merged <- df_main_exp %>%
-  left_join(df_follow_up1, by = c("session", "digits"))
-
-# Flag matched rows based on 'work_outside_1_fl' being non-NA
-df_merged <- df_merged %>%
-  mutate(matched = if_else(!is.na(work_outside_1_fl), 1, 0))
-
-# Recode follow-up variables and perform further data manipulation
-df_clean <- df_merged %>%
-  mutate(across(starts_with("employed_3mos_fl"):starts_with("driving_fl"), ~if_else(. == 2, 0, .))) %>%
-  rename(outside_others_fl = work_outside_1_fl) %>%
-  mutate(
-    outside_others_fl2 = outside_others_fl / 30,
-    outside_others_2 = outside_others / 30,
-    min_wage_fl_per = min_wage_1_fl / 30
-  )
-
-# Select relevant variables for the final cleaned dataset
-df_final <- df_clean %>%
-  select(
-    condition, digits, age, marital, education, employed_ever, employed_now, employed_wife, 
-    children, num_know, num_mutual_friends, haafez_self, vjobs_self, mwage_self, 
-    mwage_others, mwage_confidence, outside_self, outside_others, outside_confidence, 
-    semiseg_self, semiseg_others, semiseg_confidence, signed_up, employed_3mos_fl, 
-    employed_3mos_out_fl, employed_now_fl, employed_now_out_fl, applied_fl, applied_out_fl, 
-    interviewed_fl, interviewed_out_fl, interview_sched_fl, interview_sched_out_fl, driving_fl, 
-    outside_others_fl, work_semiseg_1_fl, employed_3mos_oc, employed_now_oc, matched,
-    # Add derived columns
-    outside_others_fl2, min_wage_fl_per
-  )
+library(ggplot2)
+library(readr)
+library(here)
+library(janitor)
+library(knitr)
+library(kableExtra)
 
 
-# Save the cleaned dataset
-clean_data_path <- file.path(datadir, "clean_data/02_follow_up_clean.dta")
-write_dta(df_final, clean_data_path) # Ensure df_final is saved, not df_merged
+# Read the dataset
+main_clean <- read_dta(here("inputs/data/01_main_exp_clean.dta"))
+follow_up_clean <- read_dta(here("inputs/data/02_follow_up_clean.dta"))
+online_survey_clean <- read_dta(here("inputs/data/03_1st_online_svy_clean.dta"))
+
+
+# Test
+main_clean$condition2 |> unique()
+
+
+# Observations
+total_rows <- nrow(main_clean)
+c_rows <- sum(main_clean$condition2 == 0, na.rm = TRUE)
+t_rows <- sum(main_clean$condition2 == 1, na.rm = TRUE)
+
+# Age
+total_age <- round(mean(main_clean$age, na.rm = TRUE), 2)
+c_age <- round(mean(main_clean$age[main_clean$condition2 == 0], na.rm = TRUE), 2)
+t_age <- round(mean(main_clean$age[main_clean$condition2 == 1], na.rm = TRUE), 2)
+# Age standard deviation
+total_age_sd <- paste0("(", round(sd(main_clean$age, na.rm = TRUE), 2), ")")
+c_age_sd <- paste0("(", round(sd(main_clean$age[main_clean$condition2 == 0], na.rm = TRUE), 2), ")")
+t_age_sd <- paste0("(", round(sd(main_clean$age[main_clean$condition2 == 1], na.rm = TRUE), 2), ")")
+
+
+# Number of children
+total_ch <- round(mean(main_clean$children, na.rm = TRUE), 2)
+c_ch <- round(mean(main_clean$children[main_clean$condition2 == 0], na.rm = TRUE), 2)
+t_ch <- round(mean(main_clean$children[main_clean$condition2 == 1], na.rm = TRUE), 2)
+# Number of children standard deviation
+total_ch_sd <- paste0("(", round(sd(main_clean$children, na.rm = TRUE), 2), ")")
+c_ch_sd <- paste0("(", round(sd(main_clean$children[main_clean$condition2 == 0], na.rm = TRUE), 2), ")")
+t_ch_sd <- paste0("(", round(sd(main_clean$children[main_clean$condition2 == 1], na.rm = TRUE), 2), ")")
+
+
+# College Degree (%)
+total_cd <- round(mean(main_clean$college_deg == 1, na.rm = TRUE) * 100, 2)
+c_cd <- main_clean |> filter(condition2 == 0) |>
+  summarise(c_cd = round(mean(college_deg == 1, na.rm = TRUE) * 100, 2)) |> pull(c_cd)
+t_cd <- main_clean |> filter(condition2 == 1) |>
+  summarise(t_cd = round(mean(college_deg == 1, na.rm = TRUE) * 100, 2)) |> pull(t_cd)
+
+
+# Employed (%)
+total_emp <- round((sum(main_clean$employed_now == 1, na.rm = TRUE) / total_rows) * 100, 2)
+c_emp <- main_clean %>%
+  filter(condition2 == 0) %>%
+  summarise(c_emp = round(sum(employed_now == 1, na.rm = TRUE) / c_rows * 100, 2)) %>%
+  pull(c_emp)
+t_emp <- main_clean %>%
+  filter(condition2 == 1) %>%
+  summarise(t_emp = round(sum(employed_now == 1, na.rm = TRUE) / t_rows * 100, 2)) %>%
+  pull(t_emp)
+
+
+# Wife employed (%)
+total_we <- round((sum(main_clean$employed_wife == 1, na.rm = TRUE) / total_rows) * 100, 2)
+c_we <- main_clean %>%
+  filter(condition2 == 0) %>%
+  summarise(c_we = round(sum(employed_wife == 1, na.rm = TRUE) / c_rows * 100, 2)) %>%
+  pull(c_we)
+t_we <- main_clean %>%
+  filter(condition2 == 1) %>%
+  summarise(t_we = round(sum(employed_wife == 1, na.rm = TRUE) / t_rows * 100, 2)) %>%
+  pull(t_we)
+
+
+# Wife working outside the home (% retrospective follow-up)
+c_wo <- follow_up_clean %>%
+  filter(condition2 == 0) %>%
+  filter(matched == 1) %>%
+  summarise(c_wo = round(mean(employed_3mos_out_fl) * 100, 2)) %>%
+  pull(c_wo)
+t_wo <- follow_up_clean %>%
+  filter(condition2 == 1) %>%
+  filter(matched == 1) %>%
+  summarise(t_wo = round(mean(employed_3mos_out_fl) * 100, 2)) %>%
+  pull(t_wo)
+total_wo <- follow_up_clean %>%
+  filter(matched == 1) %>%
+  summarise(total_wo = round(mean(employed_3mos_out_fl) * 100, 2)) %>%
+  pull(total_wo)
+
+
+# Other participants known (%)
+total_kn <- round(mean(main_clean$num_know_per, na.rm = TRUE) * 100, 2)
+c_kn <- main_clean %>%
+  filter(condition2 == 0) %>%
+  summarise(c_kn = round(mean(num_know_per, na.rm = TRUE) * 100, 2)) %>%
+  pull(c_kn)
+t_kn <- main_clean %>%
+  filter(condition2 == 1) %>%
+  summarise(t_kn = round(mean(num_know_per, na.rm = TRUE) * 100, 2)) %>%
+  pull(t_kn)
+# Other participants known standard deviation (%)
+total_kn_sd <- paste0("(", round(sd(main_clean$num_know_per, na.rm = TRUE) * 100, 2), ")")
+c_kn_sd <- paste0("(", round(sd(main_clean$num_know_per[main_clean$condition2 == 0], na.rm = TRUE) * 100, 2), ")")
+t_kn_sd <- paste0("(", round(sd(main_clean$num_know_per[main_clean$condition2 == 1], na.rm = TRUE) * 100, 2), ")")
+
+# Other participants with mutual friends (%)
+total_mf <- round(mean(main_clean$num_mfs_per, na.rm = TRUE) * 100, 2)
+c_mf <- main_clean %>%
+  filter(condition2 == 0) %>%
+  summarise(c_mf = round(mean(num_mfs_per, na.rm = TRUE) * 100, 2)) %>%
+  pull(c_mf)
+t_mf <- main_clean %>%
+  filter(condition2 == 1) %>%
+  summarise(t_mf = round(mean(num_mfs_per, na.rm = TRUE) * 100, 2)) %>%
+  pull(t_mf)
+# Other participants with mutual friends standard deviation (%)
+total_mf_sd <- paste0("(", round(sd(main_clean$num_mfs_per, na.rm = TRUE) * 100, 2), ")")
+c_mf_sd <- paste0("(", round(sd(main_clean$num_mfs_per[main_clean$condition2 == 0], na.rm = TRUE) * 100, 2), ")")
+t_mf_sd <- paste0("(", round(sd(main_clean$num_mfs_per[main_clean$condition2 == 1], na.rm = TRUE) * 100, 2), ")")
+
+
+
+# Assign groups
+total_group <- c(total_rows, total_age, total_age_sd, total_ch, total_ch_sd, total_cd, total_emp, total_we, total_wo, total_kn, total_kn_sd, total_mf, total_mf_sd)
+control_group <- c(c_rows, c_age, c_age_sd, c_ch, c_ch_sd, c_cd, c_emp, c_we, c_wo, c_kn,c_kn_sd, c_mf, c_mf_sd)
+treatment_group <- c(t_rows, t_age, t_age_sd, t_ch, t_ch_sd, t_cd, t_emp, t_we, t_wo, t_kn, t_kn_sd, t_mf, t_mf_sd)
+
+
+
+table1 <- cbind(total_group, control_group, treatment_group)
+row.names(table1)= c("Observations","Age","","Number of Children","","College Degree (%)","Employed (%)","Wife Employed (%)", "Wife Working Outside the Home (% retrospective follow-up)", "Other Participants Known (%)", "","Other Participants with Mutual Friends (%)","")
+
+table1 |> kbl(booktabs = T, col.names = c("All","Control","Treatment"), align=rep('c', 4)) |> 
+  row_spec(1, hline_after = TRUE) |> kable_styling()
+
+
+
+
+
+outside_value <- na.omit(online_survey_clean$c_outside_guess_frac)
+group <- rep("Control", length(outside_value))
+c_outside <- cbind(outside_value, group)
+c_outside <- data.frame(c_outside)
+
+outside_value <- na.omit(online_survey_clean$t_outside_guess_frac)
+group <- rep("Treatment", length(outside_value))
+t_outside <- cbind(outside_value, group)
+t_outside <- data.frame(t_outside)
+data_frame <- rbind(c_outside, t_outside)
+
+c_mean <- mean(online_survey_clean$c_outside_mean)/100
+t_mean <- mean(online_survey_clean$t_outside_mean)/100
+
+data_frame <- data.frame(data_frame)
+data_frame$group <- as.factor(data_frame$group)
+data_frame$outside_value <- as.numeric(data_frame$outside_value)
+
+
+
+
+data_frame |>
+  ggplot(aes(x = outside_value)) +
+  theme_minimal() +
+  stat_ecdf(aes(color = group, linetype = group), linewidth = 0.5) +
+  scale_y_continuous(name = "Cumulative Probability", breaks = c(0,.2,.4,.6,.8,1), limits = c(0,1)) +
+  scale_x_continuous(name = "Share of other agreeing", breaks = c(0,.2,.4,.6,.8,1), limits = c(0,1)) +
+  theme(legend.position = "bottom", legend.title = element_blank(),
+        legend.direction = "vertical",
+        aspect.ratio = 0.5,
+        legend.box.background = element_rect(color = "black", linewidth = 0.5)) +
+  scale_linetype_discrete(labels = c("Control (perceptions about others' answers)", "Treatment (Perception about others' beliefs)")) +
+  scale_colour_manual(values = c("black","tomato4"), labels = c("Control (perceptions about others' answers)", "Treatment (Perception about others' beliefs)")) +
+  geom_vline(aes(xintercept = c_mean), col = "black")+
+  geom_vline(aes(xintercept = t_mean), col="tomato4", linetype ="longdash") +
+  annotate(geom = "text",
+           label = c("True proportion\n(treatment)","True proportion\n(control)"),
+           x = c(0.8, 1),
+           y = 0.15,
+           vjust = -1,
+           hjust = 1,
+           size = 2,
+           col = c("black","black"))
