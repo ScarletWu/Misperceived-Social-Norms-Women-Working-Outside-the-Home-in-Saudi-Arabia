@@ -3,7 +3,7 @@ library(haven)
 library(ggplot2) 
 library(dplyr)
 
-# Define the path to your dataset
+# Define the path
 datadir <- "/cloud/project/inputs/data/"
 data_path <- file.path(datadir, "clean_data/01_main_exp_clean.dta")
 

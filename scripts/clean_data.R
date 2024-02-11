@@ -2,7 +2,7 @@
 library(dplyr)
 library(haven)
 
-# Assuming datadir is defined, replace it with your actual directory path
+# Data path
 datadir <- "/cloud/project/inputs/data/"
 raw_data_path <- file.path(datadir, "raw_data/01_main_exp_raw1.dta")
 
