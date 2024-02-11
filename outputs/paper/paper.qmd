@@ -57,10 +57,6 @@ The remainder of this paper is structured as follows.
 
 
 # Results
-## Figure 1 (Originally figure 2)
-
-
-## Table 1 (Originally table 1)
 ```{r}
 #| message: false
 #| echo: false
@@ -69,6 +65,41 @@ main_clean <- read_dta(here("inputs/data/01_main_exp_clean_original.dta"))
 follow_up_clean <- read_dta(here("inputs/data/02_follow_up_clean_original.dta"))
 online_survey_clean <- read_dta(here("inputs/data/03_1st_online_svy_clean_original.dta"))
 ```
+
+## Figure 1 (Originally figure 2)
+
+## Figure 2 (Originally figure 3)
+```{r}
+#| message: false
+#| echo: false
+p_value_figure3 <- chisq.test(table(main_clean$condition2, main_clean$signed_up_number))
+
+percentage_data_figure3 <- main_clean |>
+  mutate(condition2 = ifelse(condition2 == 0, 'Control', 'Treatment')) |>
+  group_by(condition2) |>
+  summarise(percentage = mean(signed_up_number == 1) * 100)
+```
+  
+```{r}
+#| message: false
+#| echo: false
+#| label: fig-job_sign_up
+#| fig-cap: Job Matching Service Sign Up (Main Experiment)
+plot_figure3 <- ggplot(percentage_data_figure3, aes(x = condition2, y = percentage)) +
+  geom_bar(stat = "identity", fill = "grey", color = "black", alpha = 0.9) +
+  labs(x = "",
+       y = "Percent sign up") +
+  geom_text(aes(label = paste0(round(percentage, 2), "%")),
+            position = position_dodge(width = 0.9),
+            vjust = -0.5) +
+  annotate("text", x = 1.5, y = 37, label = sprintf("p-value = %.4f", p_value_figure3$p.value)) +
+  theme_minimal() + 
+  ylim(0, 40)
+
+plot_figure3
+```
+
+## Table 1 (Originally table 1)
 
 ```{r}
 #| include: false
