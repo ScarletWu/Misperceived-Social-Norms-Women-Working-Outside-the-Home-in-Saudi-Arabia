@@ -25,6 +25,7 @@ install.packages('here')
 install.packages('janitor')
 install.packages('knitr')
 install.packages('kableExtra')
+install.packages('tidyverse')
 ```
 
 ```{r}
@@ -38,6 +39,7 @@ library(here)
 library(janitor)
 library(knitr)
 library(kableExtra)
+library(tidyverse)
 ```
 
 
@@ -48,7 +50,7 @@ The prevailing societal norms in Saudi Arabia, characterized by a low rate of wo
 
 Based on survey responses and experiments results, they find that a large portion of young married men in Saudi Arabia privately support women working outside the home. Importantly, these men greatly underestimate the proportion of support among other similar men [@MisperceivedSocialNorm]. The study population is young married husbands aged 18 to 35 in Saudi Arabia. We aim to replicate the estimand that focuses on the effects of providing husbands with the true proportion of support. Their findings suggest that men who are given the actual proportion of their peers supporting WWOH are more likely to support their wives’ labor supply, and their wives are more likely to apply for job, attend interviews, be employed and enrol in driving lessons. Correcting misperceived beliefs yields positive impacts on females employment, and insufficient communication is associated with an increased likelihood of misperceptions [@MisperceivedSocialNorm].
 
-Our paper will follow a reproduction of Leonardo Bursztyn, Alessandra L. González, and David Yanagizawa-Drott’s findings. We seek to replicate two claims, (1) There is a wedge between the actual and perceived proportion of men supporting women working outside the home, and (2) Most Saudi men who privately support WWOH fail to understand that others do as well, and they are more likely to help their wives find jobs when they know the actual portion of men supporting WWOH. The experiments and surveys results we will try to replicate are (1) the actual portion of support of WWOH from young husbands, (2) the existence of misperception, and (3) the effects of correcting beliefs on female employment in Saudi Arabia. Our reproduction used the programming language R [@r], the analysis used the following packages: Haven[@rHaven], Dplyr [@rDplyr], Ggplot2 [@rGgplot2], Readr [@rReadr], Here [@rHere], Janitor [@rJanitor], KableExtra [@rKableExtra], Knitr [@rKnitr].
+Our paper will follow a reproduction of Leonardo Bursztyn, Alessandra L. González, and David Yanagizawa-Drott’s findings. We seek to replicate two claims, (1) There is a wedge between the actual and perceived proportion of men supporting women working outside the home, and (2) Most Saudi men who privately support WWOH fail to understand that others do as well, and they are more likely to help their wives find jobs when they know the actual portion of men supporting WWOH. The experiments and surveys results we will try to replicate are (1) the actual portion of support of WWOH from young husbands, (2) the existence of misperception, and (3) the effects of correcting beliefs on female employment in Saudi Arabia. Our reproduction used the programming language R [@r], the analysis used the following packages: Haven[@rHaven], Dplyr [@rDplyr], Ggplot2 [@rGgplot2], Readr [@rReadr], Here [@rHere], Janitor [@rJanitor], KableExtra [@rKableExtra], Knitr [@rKnitr], Tidyverse [@rTidyverse].
 
 In the next section, we will discuss data including data source, methodology and features. After that, we will create a reproduction of the selected results to verify their data and their findings based on the data. In the last section, we will discuss the impact of informational intervention, the use of social proof to overcome harmful norms, and the inverse pattern of female labor force participation rate in Saudi Arabia during the pandemic. We will also conclude ethics, potential bias, and weaknesses topics, as well as a push for future research. 
 
