@@ -40,13 +40,11 @@ library(knitr)
 library(kableExtra)
 ```
 
-
 # Introduction
 
-You can and should cross-reference sections and sub-sections. 
+You can and should cross-reference sections and sub-sections.
 
-The remainder of this paper is structured as follows. 
-
+The remainder of this paper is structured as follows.
 
 # Data
 
@@ -54,9 +52,67 @@ The remainder of this paper is structured as follows.
 
 ## Methodology
 
-
-
 # Results
+
+
+The authors calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-1 specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
+
+```{r}
+#| include: false
+# Define the path
+datadir <- "/cloud/project/inputs/data/"
+data_path <- file.path(datadir, "clean_data/01_main_exp_clean.dta")
+
+# Load the dataset
+df <- read_dta(data_path)
+
+# Define the variable prefix
+q <- "outside"
+
+# Create new variables
+df[[paste0(q, "_guess_share")]] <- df[[paste0(q, "_guess")]] / 30
+df[[paste0(q, "_others_truth")]] <- ifelse(df$stag == 1, df[[paste0(q, "_objective")]] / 30, NA)
+q_self_mean <- mean(df[[paste0(q, "_self")]], na.rm = TRUE)
+df[[paste0(q, "_wedge_share")]] <- (df[[paste0(q, "_wedge")]] / 30) * 100
+
+```
+
+```{r}
+#| label: fig-1
+#| fig-cap: Histogram of Perceptual Gaps in Beliefs About Women Working Outside the Home
+#| echo: false
+#| warning: false
+#| message: false
+
+
+# Plotting a histogram of the wedge share
+f2 <- ggplot(df, aes(x = .data[[paste0(q, "_wedge_share")]])) +
+  geom_histogram(binwidth = 10.5, fill = "lightgrey", color = "black") + 
+  scale_x_continuous("Wedge (guess % - objective %)", 
+                     breaks = seq(-100, 100, by = 20), 
+                     limits = c(-100, 100), 
+                     expand = c(0.1, 0.5)) +
+  scale_y_continuous("Density", expand = c(0.5, 0)) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "#FF4136", size = 0.5) + # Less prominent zero line
+  labs(title = "Distribution of Wedge (Guess % - Objective %)", # Add a title
+       caption = "Red dashed line represents the zero point") + # Add a caption
+  theme_minimal(base_size = 12) + 
+  theme(
+    plot.background = element_blank(),
+    panel.background = element_rect(fill = "white", colour = "black"), 
+    axis.text = element_text(size = 12, color = "black"), 
+    axis.title = element_text(size = 14, color = "black"),
+    panel.grid.major = element_line(color = "lightgrey", size = 0.2), 
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(hjust = 0.5), 
+    plot.caption = element_text(hjust = 0.5) 
+  )
+f2
+```
+
+### Table 1 (Originally table 1)
+
+
 ```{r}
 #| message: false
 #| echo: false
@@ -69,6 +125,7 @@ online_survey_clean <- read_dta(here("inputs/data/03_1st_online_svy_clean_origin
 ## Figure 1 (Originally figure 2)
 
 ## Figure 2 (Originally figure 3)
+
 ```{r}
 #| message: false
 #| echo: false
@@ -79,7 +136,7 @@ percentage_data_figure3 <- main_clean |>
   group_by(condition2) |>
   summarise(percentage = mean(signed_up_number == 1) * 100)
 ```
-  
+
 ```{r}
 #| message: false
 #| echo: false
@@ -221,9 +278,127 @@ row.names(table1)= c("Observations","Age","","Number of Children","","College De
 table1 |> kbl(booktabs = T, col.names = c("All","Control","Treatment"), align=rep('c', 4)) |> 
   row_spec(1, hline_after = TRUE) |> kable_styling()
 ```
+
 ## Figure 2 (Originally figure 4)
 
+```{r}
+#| include: false
+# Define path 
+datadir <- "/cloud/project/inputs/data/"
+data_path <- file.path(datadir, "clean_data/02_follow_up_clean.dta")
+
+# Load the dataset
+df <- read_dta(data_path)
+
+# Keep matched responses and rename variable if necessary
+df_filtered <- df %>%
+  filter(matched == 1)
+
+# Calculate rates and their confidence intervals
+df_stats <- df_filtered %>%
+  mutate(condition = if_else(is.na(condition), 0, condition)) %>%
+  group_by(condition) %>%
+  summarise(
+    n = n(),
+    applied_rate = mean(applied_out_fl, na.rm = TRUE) * 100,
+    interviewed_rate = mean(interviewed_out_fl, na.rm = TRUE) * 100,
+    employed_now_rate = mean(employed_now_out_fl, na.rm = TRUE) * 100,
+    driving_rate = mean(driving_fl, na.rm = TRUE) * 100 
+  ) %>%
+  mutate(
+    applied_se = sqrt((applied_rate / 100) * (1 - (applied_rate / 100)) / n) * 100,
+    applied_rate_lo = applied_rate - 1.96 * applied_se,
+    applied_rate_hi = applied_rate + 1.96 * applied_se,
+    interviewed_se = sqrt((interviewed_rate / 100) * (1 - (interviewed_rate / 100)) / n) * 100,
+    interviewed_rate_lo = interviewed_rate - 1.96 * interviewed_se,
+    interviewed_rate_hi = interviewed_rate + 1.96 * interviewed_se,
+    employed_now_se = sqrt((employed_now_rate / 100) * (1 - (employed_now_rate / 100)) / n) * 100,
+    employed_now_rate_lo = employed_now_rate - 1.96 * employed_now_se,
+    employed_now_rate_hi = employed_now_rate + 1.96 * employed_now_se,
+    driving_se = sqrt((driving_rate / 100) * (1 - (driving_rate / 100)) / n) * 100, 
+    driving_rate_lo = driving_rate - 1.96 * driving_se,  
+    driving_rate_hi = driving_rate + 1.96 * driving_se   
+  ) %>%
+  select(-n) 
+
+# p values
+p_value_applied <- t.test(applied_out_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
+p_value_interviewed <- t.test(interviewed_out_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
+p_value_employed_now <- t.test(employed_now_out_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
+p_value_driving <- t.test(driving_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
+
+
+```
+
+By using the regression analysis, we examine the treatment effect on the participants' likelihood to sign up for a job matching service for their wives. The treatment variable is significant across all model specifications, with coefficients ranging from 0.0853 to 0.0899. The constant term varies considerably across different model specifications, suggesting differing baseline propensities for signing up absent the treatment. The p-values for the treatment effect, under various robustness checks such as robust standard errors, wild bootstrap, and permutation test, all indicate significance, ranging from 0.008 to 0.038. These results reinforcing the treatment's positive impact on sign-up rates @tbl-summary_table.
+
+## Figure 2 original fig 3
+
+Fig-2 illustrates the difference in job matching service sign-up rates between the control and treatment groups. The bar for the treatment group would be higher than the control group's, showing a clear increase in the likelihood of signing up due to the treatment. The specific values of 23.48% for the control group and 32.02% for the treatment group, along with a p-value of 0.017, would be represented, indicating a statistically significant effect of the information intervention on the participants' actions.
+
+```{r}
+#| label: fig-3
+#| fig-cap: Histogram of Perceptual Gaps in Beliefs About Women Working Outside the Home
+#| echo: false
+#| warning: false
+#| message: false
+#| layout-ncol: 2
+#| fig-subcap: ["Applied Rate","Interviewed Rate", "Employed Now Rate", "Driving Rate"]
+
+# Applied Rate
+applied_rate_4a <- ggplot(df_stats, aes(x = factor(condition), y = applied_rate)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black", width = 0.7) +
+  geom_errorbar(aes(ymin = applied_rate_lo, ymax = applied_rate_hi), width = 0.2, color = "black") +
+  geom_text(aes(label = sprintf("%.2f%%", applied_rate), y = applied_rate + 1), position = position_dodge(width = 0.7), vjust = 0) +
+  annotate("text", x = 1, y = max(df_stats$applied_rate_hi) + 3, label = paste("p-value =", round(p_value_applied, 3)), size = 4) +
+  labs(x = "", y = "% Applied", title = "Long-Term Labor Supply Outcomes") +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Control", "Treatment"))
+
+applied_rate_4a
+
+# Interviewed Rate
+
+interviewed_rate_4b <- ggplot(df_stats, aes(x = factor(condition), y = interviewed_rate)) +
+  geom_bar(stat = "identity", fill = "yellow", color = "black", width = 0.7) +
+  geom_errorbar(aes(ymin = interviewed_rate_lo, ymax = interviewed_rate_hi), width = 0.2, color = "black") +
+  geom_text(aes(label = sprintf("%.2f%%", interviewed_rate), y = interviewed_rate_hi + 2), vjust = 0) +
+  annotate("text", x = 1.5, y = max(df_stats$interviewed_rate_hi) + 5, label = paste("p-value =", round(p_value_interviewed, 3)), size = 4) +
+  labs(y = "% Interviewed", x = "") +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Control", "Treatment"))
+
+interviewed_rate_4b
+
+# Employed Now Rate
+
+employed_rate_4c <- ggplot(df_stats, aes(x = factor(condition), y = employed_now_rate)) +
+  geom_bar(stat = "identity", fill = "lightgreen", color = "black", width = 0.7) +
+  geom_errorbar(aes(ymin = employed_now_rate_lo, ymax = employed_now_rate_hi), width = 0.2, color = "black") +
+  geom_text(aes(label = sprintf("%.2f%%", employed_now_rate), y = employed_now_rate_hi + 2), vjust = 0) +
+  annotate("text", x = 1.5, y = max(df_stats$employed_now_rate_hi) + 5, label = paste("p-value =", round(p_value_employed_now, 3)), size = 4) +
+  labs(y = "% Employed Now", x = "") +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Control", "Treatment"))
+
+employed_rate_4c
+
+
+# Driving Rate
+driving_rate_4d <- ggplot(df_stats, aes(x = factor(condition), y = driving_rate)) +
+  geom_bar(stat = "identity", fill = "lightpink", color = "black", width = 0.7) +
+  geom_errorbar(aes(ymin = driving_rate_lo, ymax = driving_rate_hi), width = 0.2, color = "black") +
+  geom_text(aes(label = sprintf("%.2f%%", driving_rate), y = driving_rate_hi + 2), vjust = 0) +
+  annotate("text", x = 1.5, y = max(df_stats$driving_rate_hi) + 5, label = paste("p-value =", round(p_value_driving, 3)), size = 4) +
+  labs(y = "% Driving", x = "Condition") +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Control", "Treatment"))
+
+driving_rate_4d
+```
+
 ## Figure 3 (Originally figure 6)
+
 ```{r}
 #| message: false
 #| echo: false
@@ -245,7 +420,6 @@ data_frame <- data.frame(data_frame)
 data_frame$group <- as.factor(data_frame$group)
 data_frame$outside_value <- as.numeric(data_frame$outside_value)
 ```
-
 
 ```{r}
 #| message: false
@@ -288,17 +462,14 @@ data_frame |>
 
 ## Weaknesses and next steps
 
-
 \newpage
 
 \appendix
 
-# Appendix {-}
+# Appendix {.unnumbered}
 
 # Additional data details
 
-
 \newpage
-
 
 # References
