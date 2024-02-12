@@ -4,7 +4,7 @@ author:
   - Boxuan Yi
   - Ruoxian Wu
 thanks: "Code and data are available at: https://github.com/ScarletWu/Misperceived-Social-Norms-Women-Working-Outside-the-Home-in-Saudi-Arabia. Replication on Social Science Reproduction platform available at: https://www.socialsciencereproduction.org/reproductions/1461/"
-date: "February 10, 2024"
+date: "February 12, 2024"
 date-format: long
 abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
 format: pdf
@@ -54,16 +54,23 @@ In the next section, we will discuss data including data source, methodology and
 
 
 # Data
-
 ## Source
+The paper used for replication is from American Economic Association, American Economic Review. The replication package is downloaded from Misperceived Social Norms: Women Working Outside the Home in Saudi Arabia webpage, under Additional Materials. 
+
+Our reproduction seeks to address two findings written in the original paper, using results they collected from the main experiment, its follow-up and online survey.
 
 ## Methodology and Features
 ### Main experiment and Follow-up
+The original study recruited 500 married Saudi males aged 18 to 35 from Riyadh as participants. Initial contacts were established using a recruiter database, with further recruitment using a combination of snowball sampling and random street intercept [@MisperceivedSocialNorm]. 
+
+Participants were organized into 17 sessions, each comprising 30 individuals. The survey, administered through Qualtrics, encompassed questions about demographic information, opinions, agreement with statements, and estimations regarding the agreement of other  29 participants with each statement. Particularly, there were two statements about female labor participation. Following this, half of the participants were assigned to a treatment group randomly. Those in the treatment group were provided with information on the proportion of respondents who agreed or disagreed with each statement, while participants in the control group received no information. Respondents were then asked to make an incentivized choice between a five-dollar Amazon gift card and the opportunity to sign up their wives for a job matching platform [@MisperceivedSocialNorm]. Follow-up calls were conducted 3-5 months after the main experiment. These calls collected information about whether the wife was employed during the main experiment, whether the wife was currently employed, and if she was currently employed, whether the job was outside the home [@MisperceivedSocialNorm]. 
+
+The main experiment dataset contains 500 observations and 36 variables. Variables include age, level of education, number of children, whether this man and his wife are employed now, number of people known in the group and other variables related to WWOH statements. The follow-up dataset contains similar demographic data and information about wives’ employment, interviews and driving lessons. There are 33 variables in the follow-up dataset. Details and explanations using visualization will be further discusses in the next section.
 
 ### Online survey
+The online survey included approximately 1500 married Saudi men aged 18 to 35, randomly assigned to either a treatment or control group. In the control group, participants were presented with statements that were contentious but not stigmatized. In the treatment group, participants received an identical list of items with an additional, potentially stigmatized item for which the experimenters would like to elicit beliefs. All participants were then asked to indicate the number of statements they agree with, and the respondents from the control group were asked if they agreed with a WWOH statement individually [@MisperceivedSocialNorm]. Finally, the experimenters asked participants in the control condition to estimate the percentage of other participants who reported agreeing with the same statement, and asked participants from the treatment group to estimate the percentage of other participants who would privately agree with the WWOH statement [@MisperceivedSocialNorm].
 
-### Women recruitment survey
-
+The dataset resulting from online survey comprises 1460 observations and 21 variables. These variables include condition, age, employed_now, employed_wife, employed_out_wife, children, and the responses to the survey questions for both groups as indicated above, along with participants’ confidence levels in some of the answers. Details and explanations using visualization will be further discusses in the next section.
 
 # Results
 ```{r}
@@ -468,11 +475,6 @@ data_frame |>
 ```
 
 
-
-
-
-
-
 # Discussion
 
 ## First discussion point
@@ -482,9 +484,14 @@ data_frame |>
 ## Third discussion point
 
 ## Bias and Weaknesses
+The authors, Leonardo Bursztyn, Alessandra L. González, and David Yanagizawa-Drott, implemented many modifications to the questions and weights in an attempt to minimize bias in the survey. However, it is acknowledged that bias is an inherent challenge when conducting experiments. The main experiment survey has a participant pool of 500 married men from Riyadh. Since Riyadh is the capital and the largest city in Saudi Arabia, the sample size might be relatively small and potentially biased. The reward offered, typically a five-dollar or twenty-dollar gift card, could be another factor contributing to potential biases considering the GDP in Saudi Arabia. The paper focuses on married men aged 18 to 35 with some level of education. It is noted that, for the majority of individuals, the expected age range for completing college or university education is between 20 and 24. Therefore, setting the age range from 18 to 35 might be a weakness in the experiment.
+
+There is a potential correlation between individuals who did not participate in the follow-up and those who do not support Women Working Outside the Home, also introducing the possibility of bias.
 
 ## Next steps
+Although there is a customary practice of husbands' guardianship with decision-making authority in Saudi Arabia, gaining insights into the opinions of Saudi women regarding employment and working outside the home is essential for future study. The authors mentioned that ‘expanding the scale and observing how information spreads in networks, and how it affects a large set of outcomes is an important topic for future work’ [@MisperceivedSocialNorm]. Considering the potential biases and the experiment result stating correcting misperceived beliefs increase husbands’ support in WWOH, future research could greatly benefit from the extension of scale to enhance generalizability and actual effects on female employment in Saudi society.
 
+Figure 9 in the original paper reveals that males who often engage in discussions about the WWOH exhibit perceived support only four percent smaller than the actual proportion. For those who rarely or very rarely discuss about the WWOH, their perceived support for WWOH is around forty percent smaller than the actual proportion. If the lack of communication facilitates misperceptions, one would expect a correlation between the frequency of communication and perceptions [@MisperceivedSocialNorm]. Consequently, future studies could delve into strategies in preventing misperceived opinions from influencing social norms, and explore decision-making in the presence of collective misperceptions.
 
 
 
