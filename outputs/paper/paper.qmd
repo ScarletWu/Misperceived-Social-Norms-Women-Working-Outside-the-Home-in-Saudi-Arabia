@@ -481,14 +481,24 @@ data_frame |>
 
 # Discussion
 
-## Impact of Informational Intervention: 
+## 1. Impact of Informational Intervention: 
 
 The research findings have highlighted the importance of correcting misperceived social norms, not only to increase women's participation in the labor market but also to make progress in broader social norms and attitudes towards women's rights and autonomy. The study shows that interventions aimed at challenging and changing societal norms can have a significant impact on women's economic participation and social development. For instance, the study found that after an information intervention, more husbands were willing to sign up their wives for driving lessons, indicating a shift towards more progressive attitudes regarding women's mobility and independence. These changes can contribute to economic development by increasing the labor force and promoting gender equality. The researchers suggest that similar interventions could be effective in other contexts where misperceptions about social norms limit women's economic participation. This approach can offer valuable insights for policymakers and organizations aiming to promote gender equality and economic development, emphasizing the role of accurate information in challenging and changing societal norms. In today's world, digital platforms and social media hold a significant impact on the formation of public opinion and social norms. By making strategic use of these technologies, we can effectively disseminate accurate information and correct any misconceptions. We can leverage online platforms to share data on societal attitudes towards WWOH. This will enable interventions to reach a much wider audience, facilitating a more rapid and widespread change in perceptions. 
 
 
 
 
-## Second discussion point
+## 2. Broader Social Proof Implications
+
+It is possible to overcome harmful norms in cultural and societal settings by using social proof. 
+
+One study @Counternormative found that communicating the increasing popularity of environmentally friendly behaviors encouraged individuals to adopt these behaviors themselves, demonstrating the power of social proof in effecting change in environmental contexts. This suggests that highlighting positive changes in societal behaviors can be effective in encouraging the adoption of new, more beneficial norms and practices, rather than focusing on static norms.
+
+Another study @OrganizedDiffusio has evaluated the impact of "organized diffusion" on community-based health and women's empowerment programs. This approach involves encouraging individuals who have received training or information to share it with others, thus spreading the benefits more widely. The study, which looked at programs in Mali, Nepal, and Nigeria, found that implementing this method can lead to significant changes in social norms without incurring additional costs.
+
+These studies show that by understanding and addressing specific normative beliefs underlying societal issues, policymakers and practitioners can design targeted interventions that utilize social proof effectively. By presenting evidence of changing norms and behaviors within a community, we can foster a more inclusive, equitable, and sustainable society.
+
+Integrating these studies enhances our understanding of how social proof can be applied across different issues and cultural contexts to promote positive social change.
 
 ## Third discussion point
 
