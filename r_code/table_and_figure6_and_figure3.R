@@ -1,15 +1,3 @@
-
-
-# Install packages we need
-install.packages('haven')
-install.packages('dplyr')
-install.packages('ggplot2')
-install.packages('readr')
-install.packages('here')
-install.packages('janitor')
-install.packages('knitr')
-
-
 library(haven)
 library(dplyr)
 library(ggplot2)
@@ -152,7 +140,27 @@ table1 |> kbl(booktabs = T, col.names = c("All","Control","Treatment"), align=re
 write.csv(table1, file = "/cloud/project/outputs/table/table1.csv", row.names = FALSE)
 
 
+# Figure 3
+p_value_figure3 <- chisq.test(table(main_clean$condition2, main_clean$signed_up_number))
+percentage_data_figure3 <- main_clean |>
+  mutate(condition2 = ifelse(condition2 == 0, 'Control', 'Treatment')) |>
+  group_by(condition2) |>
+  summarise(percentage = mean(signed_up_number == 1) * 100)
 
+plot_figure3 <- ggplot(percentage_data_figure3, aes(x = condition2, y = percentage)) +
+  geom_bar(stat = "identity", fill = "grey", color = "black", alpha = 0.9) +
+  labs(x = "",
+       y = "Percent sign up") +
+  geom_text(aes(label = paste0(round(percentage, 2), "%")),
+            position = position_dodge(width = 0.9),
+            vjust = -0.5) +
+  annotate("text", x = 1.5, y = 37, label = sprintf("p-value = %.4f", p_value_figure3$p.value)) +
+  theme_minimal() + 
+  ylim(0, 40)
+ggsave("/cloud/project/outputs/figures/figure3.png", plot = plot_figure3)
+
+
+# Figure 6
 outside_value <- na.omit(online_survey_clean$c_outside_guess_frac)
 group <- rep("Control", length(outside_value))
 c_outside <- cbind(outside_value, group)
@@ -170,8 +178,6 @@ t_mean <- mean(online_survey_clean$t_outside_mean)/100
 data_frame <- data.frame(data_frame)
 data_frame$group <- as.factor(data_frame$group)
 data_frame$outside_value <- as.numeric(data_frame$outside_value)
-
-
 
 
 figure6 <-

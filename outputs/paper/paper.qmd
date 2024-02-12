@@ -42,18 +42,27 @@ library(kableExtra)
 
 
 # Introduction
+Barriers to hiring women exert a significant influence on female labor and present a constraint to increasing economic opportunities for women [@Organizational]. Saudi Arabia is a recognizable example of a country with a low rate of female labor force participation. In 2022, the female labor force participation rate, defined as the percentage of the female population aged 15+ that is employed, is only 27.8% in Saudi Arabia. This is notably lower than the global average of 47.3%, while the male labor force participation rate in Saudi Arabia is relatively high at 80% [@worldbankLaborForce]. 
 
-You can and should cross-reference sections and sub-sections. 
+The prevailing societal norms in Saudi Arabia, characterized by a low rate of women working outside the home and the customary practice of husbands' guardianship with decision-making authority, contribute to the perception that Saudi men are unwilling to allow their wives to work [@MisperceivedSocialNorm]. This perception is often considered the primary reason behind the low rates of female employment, especially female working outside the home (WWOH). The paper ‘Misperceived Social Norms: Women Working Outside the Home in Saudi Arabia’ by Leonardo Bursztyn, Alessandra L. González, and David Yanagizawa-Drott delves into this social norm, as well as Saudi men’s perceptions of opinions regarding WWOH.
 
-The remainder of this paper is structured as follows. 
+Drawing from survey responses and experiments results, they find that a large portion of young married men in Saudi Arabia privately support women working outside the home, and they greatly underestimate the proportion of support by other similar men [@MisperceivedSocialNorm]. The study population is young married husbands in Saudi Arabia. We aim to replicate the estimand that focuses on the proportion of husbands signing up job matching for their wives and the subsequent employment of wives a few months after the experiment. Their findings suggest that men who are given the actual proportion of their peers supporting WWOH are more likely to support their wives’ labor supply, and their wives are more likely to apply for job, attend interviews, be employed and enrol in driving lessons.  Correcting misperceived beliefs manifests positive impacts on females, and the lack of communication emerges as a primary factor contributing to these misperceptions.
+
+Our paper will follow a reproduction of Leonardo Bursztyn, Alessandra L. González, and David Yanagizawa-Drott’s findings. We seek to replicate two claims, (1) There is a wedge between the actual and perceived proportion of men supporting women working outside the home, and (2) Most Saudi men who privately support WWOH fail to understand that others do as well, and they are more likely to help their wives find jobs when they know the actual portion of men supporting WWOH. The experiments and surveys results we will try to replicate are (1) the actual portion of support of WWOH from young husbands, (2) the existence of misperception, and (3) the effects of correcting beliefs on wives in Saudi Arabia. Our reproduction used the programming language R [@r], the analysis used the following packages: Haven[@rHaven], Dplyr [@rDplyr], Ggplot2 [@rGgplot2], Readr [@rReadr], Here [@rHere], Janitor [@rJanitor], KableExtra [@rKableExtra], Knitr [@rKnitr].
+
+In the next section, we will discuss data including data source, methodology and features. After that, we will create a reproduction of the selected results to verify their data and their findings based on the data. In the last section, we will discuss our findings, including …. We will also conclude potential bias and weaknesses, as well as a push for future research
 
 
 # Data
 
 ## Source
 
-## Methodology
+## Methodology and Features
+### Main experiment and Follow-up
 
+### Online survey
+
+### Women recruitment survey
 
 
 # Results
@@ -65,9 +74,6 @@ main_clean <- read_dta(here("inputs/data/01_main_exp_clean_original.dta"))
 follow_up_clean <- read_dta(here("inputs/data/02_follow_up_clean_original.dta"))
 online_survey_clean <- read_dta(here("inputs/data/03_1st_online_svy_clean_original.dta"))
 ```
-
-## Figure 1 (Originally figure 2)
-
 
 ```{r}
 #| include: false
@@ -124,7 +130,7 @@ f2
 
 The authors calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-1 specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
 
-## Table 1 (Originally table 1)
+
 By using the regression analysis, we examine the treatment effect on the participants' likelihood to sign up for a job matching service for their wives. The treatment variable is significant across all model specifications, with coefficients ranging from 0.0853 to 0.0899. The constant term varies considerably across different model specifications, suggesting differing baseline propensities for signing up absent the treatment. The p-values for the treatment effect, under various robustness checks such as robust standard errors, wild bootstrap, and permutation test, all indicate significance, ranging from 0.008 to 0.038. These results reinforcing the treatment's positive impact on sign-up rates (@tbl-summary_table).
 
 ```{r}
@@ -248,7 +254,6 @@ table1 |> kbl(booktabs = T, col.names = c("All","Control","Treatment"), align=re
   row_spec(1, hline_after = TRUE) |> kable_styling()
 ```
 
-## Figure 2 (Originally figure 3)
 ```{r}
 #| message: false
 #| echo: false
@@ -279,21 +284,19 @@ plot_figure3 <- ggplot(percentage_data_figure3, aes(x = condition2, y = percenta
 plot_figure3
 ```
 
-@fig-job_sign_up illustrates the difference in job matching service sign-up rates between the control and treatment groups. The bar for the treatment group would be higher than the control group's, showing a clear increase in the likelihood of signing up due to the treatment. The specific values of 23.48% for the control group and 32.02% for the treatment group, along with a p-value of 0.017, would be represented, indicating a statistically significant effect of the information intervention on the participants' actions.
+@fig-job_sign_up illustrates the difference in job matching service sign-up rates between the control and treatment groups. The bar for the treatment group would be higher than the control group's, showing a clear increase in the likelihood of signing up due to the treatment. The specific values of 23.48% for the control group and 32.02% for the treatment group, along with a p-value of 0.0424, would be represented, indicating a statistically significant effect of the information intervention on the participants' actions.
 
 The combination of @tbl-summary_table and @fig-job_sign_up demonstrates the efficacy of the information treatment in altering the participants' behavior towards women's labor market participation, revealing not only a statistical significance but also practical importance in the context of social norms and labor supply outcomes in Saudi Arabia.
 
-
-## Figure 3 (Originally figure 4)
 The the longer-term outcomes of the treatment are shown in @fig-3 with error bars indicating the 95% confidence intervals for these proportions.
 
-The job matching service sign-up rates is presented in Figure 4a. In the control group, 6.04% of participants chose to sign their wives up for the job service instead of taking a gift card payment while 16.74% participants in the treatment group chose the job service (p-value = 0.001). The increased sign-up rate in the treatment group more young men accepted the idea of WWOH after the correction of misperceptions.
+The job matching service sign-up rates is presented in @fig-3 a. In the control group, 6.04% of participants chose to sign their wives up for the job service instead of taking a gift card payment while 16.74% participants in the treatment group chose the job service (p-value = 0.001). The increased sign-up rate in the treatment group more young men accepted the idea of WWOH after the correction of misperceptions.
 
-The informational intervention has impact on participants' wives were interviewed for a job outside the home. After the intervention, there was a statistically significant increase in interviews, with the percentage of wives who interviewed for a job outside the home rising from 1.1% to 5.95%. This more than fivefold increase (p-value = 0.013) suggests that the treatment had a notable effect on the interview rates for jobs outside the home (Figure 4b).
+In @fig-3 b, the informational intervention has impact on participants' wives were interviewed for a job outside the home. After the intervention, there was a statistically significant increase in interviews, with the percentage of wives who interviewed for a job outside the home rising from 1.1% to 5.95%. This more than fivefold increase (p-value = 0.013) suggests that the treatment had a notable effect on the interview rates for jobs outside the home.
 
-Similarly, the informational intervention effects on the employment rate of participants' wives in jobs outside the home. The employment rate post-intervention increased from 7.69% to 9.73%. Although this represents an increase, it is not statistically significant (p-value = 0.456), implying that while the intervention might have had an encouraging effect on job-seeking behavior, it did not translate into a significant difference in actual employment within the study period (Figure 4c).
+Similarly, the informational intervention effects on the employment rate of participants' wives in jobs outside the home according to @fig-3 c. The employment rate post-intervention increased from 7.69% to 9.73%. Although this represents an increase, it is not statistically significant (p-value = 0.456), implying that while the intervention might have had an encouraging effect on job-seeking behavior, it did not translate into a significant difference in actual employment within the study period.
 
-Besides, Figure 4d indicates that the change in husbands' willingness to sign their wives up for driving lessons as a result of the informational intervention. There is a significant increase from 68.13% to 78.38% in the proportion of husbands who reported they would sign their wives up for driving lessons (p-value = 0.03). This result indicates that the informational intervention not only had an impact on labor supply outcomes but also potentially affected broader social norms and attitudes toward women's rights and autonomy in Saudi Arabia, as evidenced by the increased openness to women's mobility through driving.
+Besides, @fig-3 d indicates that the change in husbands' willingness to sign their wives up for driving lessons as a result of the informational intervention. There is a significant increase from 68.13% to 78.38% in the proportion of husbands who reported they would sign their wives up for driving lessons (p-value = 0.03). This result indicates that the informational intervention not only had an impact on labor supply outcomes but also potentially affected broader social norms and attitudes toward women's rights and autonomy in Saudi Arabia, as evidenced by the increased openness to women's mobility through driving.
 
 
 Overall, the treatment has a significant impact on both immediate and longer-term outcomes related to women's labor market participation and related behaviors (@fig-3).
@@ -410,8 +413,7 @@ driving_rate_4d
 
 
 \newpage
-## Figure 4 (Originally figure 6)
-@fig-national_survey_misperception is made to illustrate the result of the first national survey. There are two vertical lines that represent the actual proportion of respondents who agreed with the statement in Figure 6. One line is for the control group, which reflects their perceptions about others' answers, and the other line is for the treatment group, which reflects their perceptions about others' beliefs. The graph shows the support level of treatment group is mostly higher than control. This figure underscores a significant discrepancy between personal beliefs and perceived societal norms. The larger sample size of this national survey strengthens the evidence that men privately support women's employment outside the home more than they assume others do, suggesting widespread misperceptions about societal norms.
+@fig-national_survey_misperception is made to illustrate the result of the first national survey. There are two vertical lines that represent the actual proportion of respondents who agreed with the statement in @fig-national_survey_misperception, showing more than 80% of men underestimated the true proportion. The black line is for the control group, which reflects their perceptions about others' answers, and the red dashed line is for the treatment group, which reflects their perceptions about others' beliefs. The graph shows the support level of treatment group is mostly higher than control. This figure underscores a significant discrepancy between personal beliefs and perceived societal norms. The larger sample size of this national survey strengthens the evidence that men privately support women's employment outside the home more than they assume others do, suggesting widespread misperceptions about societal norms.
 
 ```{r}
 #| message: false
@@ -479,18 +481,11 @@ data_frame |>
 
 ## Third discussion point
 
-## Bias
+## Bias and Weaknesses
 
-## Weaknesses and next steps
+## Next steps
 
 
-\newpage
-
-\appendix
-
-# Appendix {-}
-
-# Additional data details
 
 
 \newpage

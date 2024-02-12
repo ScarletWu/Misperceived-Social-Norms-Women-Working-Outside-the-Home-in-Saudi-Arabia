@@ -1,3 +1,7 @@
+#### Preamble ####
+# Purpose: Clean the raw dataset
+# Author: Boxuan Yi, Ruoxian Wu
+
 # Load necessary packages
 library(dplyr)
 library(haven)
