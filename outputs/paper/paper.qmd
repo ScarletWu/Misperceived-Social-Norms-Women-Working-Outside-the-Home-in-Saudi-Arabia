@@ -104,40 +104,28 @@ df[[paste0(q, "_wedge_share")]] <- (df[[paste0(q, "_wedge")]] / 30) * 100
 
 ```
 
+
 ```{r}
-#| label: fig-1
-#| fig-cap: Histogram of Perceptual Gaps in Beliefs About Women Working Outside the Home
+#| label: fig-wedge
+#| fig-cap: Wedges in Perceptions of Others’ Beliefs (Main Experiment)
 #| echo: false
 #| warning: false
 #| message: false
 
+f2 <- df |> ggplot(aes(x = (outside_wedge/30) * 100))+
+  geom_histogram(aes(y = after_stat(density)), bins = 20, fill = "grey", color = "black", na.rm = TRUE, breaks = seq(-100, 30, by = 10)) +   
+  geom_vline(xintercept = 0, color = "red4", linetype = "dashed") +
+  theme_minimal() +
+  scale_x_continuous(name= "Wedge (guess% - objective %)", 
+                     breaks = c(-100,-80,-60,-40,-20,0,20,40,60,80,100), 
+                     limits = c(-100,100)) +
+  scale_y_continuous(name = "Density", 
+                     breaks = c(0, 0.005, 0.01, 0.015),
+                     limits = c(0, 0.015))
 
-# Plotting a histogram of the wedge share
-f2 <- ggplot(df, aes(x = .data[[paste0(q, "_wedge_share")]])) +
-  geom_histogram(binwidth = 10.5, fill = "lightgrey", color = "black") + 
-  scale_x_continuous("Wedge (guess % - objective %)", 
-                     breaks = seq(-100, 100, by = 20), 
-                     limits = c(-100, 100), 
-                     expand = c(0.1, 0.5)) +
-  scale_y_continuous("Density", expand = c(0.5, 0)) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "#FF4136", size = 0.5) + # Less prominent zero line
-  labs(title = "Distribution of Wedge (Guess % - Objective %)", # Add a title
-       caption = "Red dashed line represents the zero point") + # Add a caption
-  theme_minimal(base_size = 12) + 
-  theme(
-    plot.background = element_blank(),
-    panel.background = element_rect(fill = "white", colour = "black"), 
-    axis.text = element_text(size = 12, color = "black"), 
-    axis.title = element_text(size = 14, color = "black"),
-    panel.grid.major = element_line(color = "lightgrey", size = 0.2), 
-    panel.grid.minor = element_blank(),
-    plot.title = element_text(hjust = 0.5), 
-    plot.caption = element_text(hjust = 0.5) 
-  )
 f2
 ```
-
-The authors calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-1 specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
+The authors calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-wedge specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
 
 
 By using the regression analysis, we examine the treatment effect on the participants' likelihood to sign up for a job matching service for their wives. The treatment variable is significant across all model specifications, with coefficients ranging from 0.0853 to 0.0899. The constant term varies considerably across different model specifications, suggesting differing baseline propensities for signing up absent the treatment. The p-values for the treatment effect, under various robustness checks such as robust standard errors, wild bootstrap, and permutation test, all indicate significance, ranging from 0.008 to 0.038. These results reinforcing the treatment's positive impact on sign-up rates (@tbl-summary_table).
@@ -256,6 +244,7 @@ treatment_group <- c(t_rows, t_age, t_age_sd, t_ch, t_ch_sd, t_cd, t_emp, t_we, 
 ```{r}
 #| message: false
 #| echo: false
+#| warning: false
 #| label: tbl-summary_table
 #| tbl-cap: Summary Statistics (Main Experiment)
 table1 <- cbind(total_group, control_group, treatment_group)
@@ -454,6 +443,7 @@ data_frame$outside_value <- as.numeric(data_frame$outside_value)
 ```{r}
 #| message: false
 #| echo: false
+#| warning: false
 #| label: fig-national_survey_misperception
 #| fig-cap: Misperceptions about Others’ Beliefs (National Survey)
 data_frame |>
