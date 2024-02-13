@@ -55,9 +55,9 @@ In the next section, we will discuss data including data source, methodology and
 
 # Data
 ## Source
-The paper used for replication is from American Economic Association, American Economic Review. The replication package is downloaded from Misperceived Social Norms: Women Working Outside the Home in Saudi Arabia webpage, under Additional Materials. 
+The paper used for replication is from American Economic Association, American Economic Review. The replication package is downloaded from Misperceived Social Norms: Women Working Outside the Home in Saudi Arabia webpage, under Additional Materials. The original paper and its replicated package can be found here: https://www.aeaweb.org/articles?id=10.1257/aer.20180975
 
-Our reproduction seeks to address two findings written in the original paper, using results they collected from the main experiment, its follow-up and online survey.
+Our reproduction seeks to address two findings written in the original paper, using results they collected from the main experiment, its follow-up and online survey. 
 
 ## Methodology and Features
 ### Main experiment and Follow-up
@@ -73,10 +73,7 @@ The online survey included approximately 1500 married Saudi men aged 18 to 35, r
 The dataset resulting from online survey comprises 1460 observations and 21 variables. These variables include condition, age, employed_now, employed_wife, employed_out_wife, children, and the responses to the survey questions for both groups as indicated above, along with participants’ confidence levels in some of the answers. Details and explanations using visualization will be further discusses in the next section.
 
 # Results
-We calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-wedge specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
-
-
-
+In the main experiment, the “wedge” in @fig-wedge is calculated as ‘participant’s guess about the percent of session participants agreeing with the pro-WWOH statement’ minus ‘actual percent of session participants agreeing with the pro-WWOH statement’. A negative wedge indicates that the participant underestimate the support for WWOH, while a positive wedge suggests that the participant overestimate the support. The red dashed vertical line represents a wedge of 0, showing a correct guess of the proportion. From the distribution of @fig-wedge, 71.8% of participants underestimate the support for WWOH among session participants, with an average wedge of -24.1%, even though these individuals were recruited from the same neighbourhoods and knew an average of 15 out of 29 people in the session. There is a clear gap between perceived and actual social norms regarding women's work outside the home.
 
 ```{r}
 #| message: false
@@ -128,8 +125,19 @@ f2 <- df |> ggplot(aes(x = (outside_wedge/30) * 100))+
 
 f2
 ```
+
+```{r}
+#| include: false
+# Calculate actual measurement
+mean(main_clean$num_know_per)
+mean(main_clean$outside_wedge)/30
+num_underestimate <- main_clean |> filter(outside_wedge < 0) |> nrow()
+total_num_participant <-  main_clean |> nrow()
+num_underestimate / total_num_participant
+```
+
 \newpage
-@tbl-summary_table presents the successful randomization in the experiment, which is evident from the comparable statistics between the treatment and control groups. For instance, both groups have almost identical average age, with the control group at 24.64 years and the treatment group at 24.91 years. Similarly, the employment rates are also similar, with 87.45% employed in the control group as compared to 85.77% in the treatment group. Additionally, the percentage of participants with a college degree is also balanced, with 55.06% in the control group and 57.31% in the treatment group. These figures imply that any differences in the intervention outcomes can be confidently attributed to the treatment itself rather than to underlying demographic differences.
+Before discussing the results concluded from experimental intervention, @tbl-summary_table presents a summary of features of the groups - control group and treatment group, as well as all participant as a group. As mentioned in Section 2, 500 participants are randomly assigned to either the control group or treatment group. According to @tbl-summary_table, we can infer from the comparable statistics that the randomization in the experiment is successful, with individual characteristics balanced in all three groups. For instance, all groups have a similar average age, with the control group at 24.64 years and the treatment group at 24.91 years. Employment rates are also on the same level, with 87.45% in the control group compared to 85.77% in the treatment group. Each number in parentheses is the p-value of the row above.
 
 ```{r}
 #| include: false
@@ -285,24 +293,20 @@ plot_figure3 <- ggplot(percentage_data_figure3, aes(x = condition2, y = percenta
 plot_figure3
 ```
 
-@fig-job_sign_up illustrates the difference in job matching service sign-up rates between the control and treatment groups. The bar for the treatment group would be higher than the control group's, showing a clear increase in the likelihood of signing up due to the treatment. The specific values of 23.48% for the control group and 32.02% for the treatment group, along with a p-value of 0.0424, would be represented, indicating a statistically significant effect of the information intervention on the participants' actions.
+@fig-job_sign_up displays the main result from the experimental intervention, illustrating the difference in job matching service sign-up rates between the control and treatment groups. In the control group, 23.48% of participants are willing to sign up their wives for the job service when provided with another gift card option. In the treatment group, where participants are given the actual proportion of support for WWOH, 32.02% of the respondents prefer to sign up their wives for the job service, which is a 32% increase (with a p-value of 0.0424).
 
-The combination of @tbl-summary_table and @fig-job_sign_up demonstrates the efficacy of the information treatment in altering the participants' behavior towards women's labor market participation, revealing not only a statistical significance but also practical importance in the context of social norms and labor supply outcomes in Saudi Arabia.
-
+The combination of @tbl-summary_table and @fig-job_sign_up demonstrates the effects of the information intervention on participants’ behavior and opinions towards women's labor market participation, revealing not only a statistical significance but also practical importance in the context of social norms and labor supply outcomes in Saudi Arabia.
 
 \newpage
-The the longer-term outcomes of the treatment are shown in @fig-3 with error bars indicating the 95% confidence intervals for these proportions.
+The longer-term outcomes of the experiment on information intervention are shown in @fig-3 with error bars indicating the 95% confidence intervals for these proportions.
 
-The job matching service sign-up rates is presented in @fig-3 a. In the control group, 6.04% of participants chose to sign their wives up for the job service instead of taking a gift card payment while 16.74% participants in the treatment group chose the job service (p-value = 0.001). The increased sign-up rate in the treatment group more young men accepted the idea of WWOH after the correction of misperceptions.
+The percentage of wives applying for a job outside the home is presented in @fig-3 a. In the control group, 6.04% of wives apply for jobs outside, while 16.74% wives in the treatment group choose to do so. The increase in application rate is quite obvious, nearly a 180% increase with a p-value of 0.001. @fig-3 b shows the impact of the informational intervention on outside-home job interviews. The interview rate in the control group is 1.1% while the treatment group has 5.95%, with p-value of 0.013. Both @fig-3 a and @fig-3 b display significant increases. 
 
-In @fig-3 b, the informational intervention has impact on participants' wives were interviewed for a job outside the home. After the intervention, there was a statistically significant increase in interviews, with the percentage of wives who interviewed for a job outside the home rising from 1.1% to 5.95%. This more than fivefold increase (p-value = 0.013) suggests that the treatment had a notable effect on the interview rates for jobs outside the home.
+Regarding the employment rates for this kind of job, @fig-3 c shows that the employment rate increases from 7.69% to 9.73%. Although this indicates an increase, it is not statistically significant (p-value = 0.456), implying that though the intervention might have had an encouraging effect on job-seeking behavior, it does not translate into a significant difference in actual employment within the study period.
 
-Similarly, the informational intervention effects on the employment rate of participants' wives in jobs outside the home according to @fig-3 c. The employment rate post-intervention increased from 7.69% to 9.73%. Although this represents an increase, it is not statistically significant (p-value = 0.456), implying that while the intervention might have had an encouraging effect on job-seeking behavior, it did not translate into a significant difference in actual employment within the study period.
+To further explore the long-term influence, @fig-3 d shows the share of husbands who report in a hypothetical question whether they would sign their wives up for driving lessons. The control group has a rate of 68.13%, and the treatment group has a rate of 78.38%, with p-value as 0.03. The increase in husbands’ willingness to sign their wives up for driving lessons implies that correcting misperception influences beyond behaviours associated with female employment, creating potential impacts on broader social norms and attitudes toward women's conditions in Saudi Arabia.
 
-Besides, @fig-3 d indicates that the change in husbands' willingness to sign their wives up for driving lessons as a result of the informational intervention. There is a significant increase from 68.13% to 78.38% in the proportion of husbands who reported they would sign their wives up for driving lessons (p-value = 0.03). This result indicates that the informational intervention not only had an impact on labor supply outcomes but also potentially affected broader social norms and attitudes toward women's rights and autonomy in Saudi Arabia, as evidenced by the increased openness to women's mobility through driving.
-
-
-Overall, the treatment has a significant impact on both immediate and longer-term outcomes related to women's labor market participation and related behaviors (@fig-3).
+Overall, the treatment has a significant effects on both immediate and longer-term outcomes related to women labor market participation based on @fig-3.
 
 ```{r}
 #| include: false
@@ -413,8 +417,11 @@ driving_rate_4d
 ```
 
 
+@fig-national_survey_misperception is created to illustrate the results of the national survey conducted with 1460 Saudi men aged from 18 to 35. The x-axis represents the share of others agreeing, and the y-axis denotes the cumulative probability that participants agree with the pro-WWOH statement. Two vertical lines in @fig-national_survey_misperception represent the actual proportion of respondents who agree with the statement. 
 
-@fig-national_survey_misperception is made to illustrate the result of the first national survey. There are two vertical lines that represent the actual proportion of respondents who agreed with the statement in @fig-national_survey_misperception, showing more than 80% of men underestimated the true proportion. The black line is for the control group and the red dashed line is for the treatment group. The lines reflect perceptions of participants about others' beliefs. The graph shows the support level of treatment group is mostly higher than control. This figure underscores a significant discrepancy between personal beliefs and perceived societal norms. The larger sample size of this national survey strengthens the evidence that men privately support women's employment outside the home more than they assume others do, suggesting widespread misperceptions about societal norms.
+There is no significant difference between the data concerning the control group and the treatment group. @fig-national_survey_misperception reveals that the average proportion of support for both groups is slightly above 80%, while more than 90% of men underestimate this proportion. The number of underestimations is larger than the number observed in the main experiment, and one explanation is that participants are no longer being asked about opinions from people that they are familiar.
+
+This figure, once again, underscores the discrepancy between personal beliefs and perceived societal norms. The larger sample size of this national survey also bolsters the evidence that men privately support women's employment outside the home more than they assume others do, suggesting widespread misperceptions in current Saudi society.
 
 ```{r}
 #| message: false
