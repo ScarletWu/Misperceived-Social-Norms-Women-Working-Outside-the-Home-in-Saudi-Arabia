@@ -1,5 +1,382 @@
-# Correct grammar mistakes
+# The links are shown below. Detailed chats were also included in this file
 https://chat.openai.com/c/709fb34e-54ca-488a-9708-a23a342e0ad8
-
-# Code
 https://chat.openai.com/share/dbbd82f5-b135-45c7-9cc6-2af389f14289
+
+
+User
+correct my grammar mistake and improve my writing a little bit:Wedge
+In the main experiment, “wedge” in @fig-wedge is calculated as (participant’s guess about the percent of session participants agreeing with the pro-WWOH statement) - (actual percent of session participants agreeing with the pro-WWOH statement), meaning a negative wedge indicating the participant underestimate the support for WWOH, and a positive wedge suggesting the participant overestimate the support. The red dashed vertical line represents wedge is 0, and this is the line that shows the respondent had a correct guess. From the distribution of @fig-wedge, 71.8% participants underestimate the support for WWOH among session participants, with an wedges average of -24.1%, even though these individuals were recruited from the same neighbourhoods and they knew 15 out of 29 people in the session averagely. There is a clear gap between perceived and actual social norms regarding women's work outside the home.
+
+Table
+Before discussing the results concluded from experimental intervention, @tbl-summary_table presents a summary of features of the groups - control group and treatment group, as well as all participant as a group. As mentioned in Section 2, 500 participants are randomly assigned to either control group or treatment group. According to @tbl-summary_table, we can tell from the comparable statistics that the randomization in the experiment is successful, with individual characteristics are balanced in all three groups. For instance, all groups have similar average age, with the control group at 24.64 years and the treatment group at 24.91 years. The employment rates are also on the same level, with 87.45% in the control group as compared to 85.77% in the treatment group. Each number with parentheses is the p-value of the row above.
+Thank you very much
+
+Main finding 4
+@fig-job_sign_up displays the main result from the experimental intervention, illustrating the difference in job matching service sign-up rates between the control and treatment groups. In the control group, 23.48% of participants are willing to sign up their wives for the job service when provided with another gift card option. In the treatment group, where participants are given the actual proportion of support in WWOH, 32.02% of the respondents prefer to sign up their wives for the job service, which is a 32% increase (with p-value as 0.0424).
+
+The combination of @tbl-summary_table and @fig-job_sign_up demonstrates the effects of the information intervention in participants’ behavior/opinion towards women's labor market participation, revealing not only a statistical significance but also practical importance in the context of social norms and labor supply outcomes in Saudi Arabia.
+
+
+\newpage
+The the longer-term outcomes of the experiment on information intervention are shown in @fig-3 with error bars indicating the 95% confidence intervals for these proportions.
+
+The percentage of wives applied for a job outside is presented in @fig-3 a. In the control group, 6.04% of wives apply for job working outside, while 16.74% wives in the treatment group choose to do so. The increase in apply rate is very obvious, which is nearly 180 percent increase with p-value = 0.001. @fig-3 b shows the impact of the informational intervention on outside-home job interviews. The interview rate in the control group is 1.1% while the treatment group has 5.95%, with p-value = 0.013. Both @fig-3 a and @fig-3 b display significant increases. 
+
+Regarding the employment rates for this kind of job, @fig-3 c shows that the employment rate increases from 7.69% to 9.73%. Although this indicates an increase, it is not statistically significant (p-value = 0.456), implying that while the intervention might have had an encouraging effect on job-seeking behaviour, it does not translate into a significant difference in actual employment within the study period.
+
+
+To further explore the long-term influence, @fig-3 d shows the share of husbands who report in a hypothetical question that whether they would sign their wives up for driving lessons. The control group has a rate of 68.13%, and the treatment group has a rate of 78.38%, with p-value be 0.03. The increase in husbands’ willingness to sign their wives up for driving lessons implies that correcting information intervention influence beyond behaviours associated with female employment, creating potential impacts on broader social norms and attitudes toward women's rights in Saudi Arabia.
+
+Overall, the treatment has a significant effects on both immediate and longer-term outcomes related to women's labor market participation based on @fig-3.
+
+ChatGPT
+Wedge
+
+In the main experiment, the "wedge" in @fig-wedge is calculated as the participant's guess about the percentage of session participants agreeing with the pro-WWOH statement minus the actual percentage of session participants agreeing with the pro-WWOH statement. A negative wedge indicates that the participant underestimated the support for WWOH, while a positive wedge suggests that the participant overestimated the support. The red dashed vertical line represents a wedge of 0, indicating a correct guess. From the distribution of @fig-wedge, 71.8% of participants underestimated the support for WWOH among session participants, with an average wedge of -24.1%, even though these individuals were recruited from the same neighborhoods and knew an average of 15 out of 29 people in the session. There is a clear gap between perceived and actual social norms regarding women's work outside the home.
+
+Table
+
+Before discussing the results concluded from the experimental intervention, @tbl-summary_table presents a summary of features of the groups - control group and treatment group, as well as all participants as a group. As mentioned in Section 2, 500 participants are randomly assigned to either the control group or treatment group. According to @tbl-summary_table, we can infer from the comparable statistics that the randomization in the experiment was successful, with individual characteristics balanced in all three groups. For instance, all groups have a similar average age, with the control group at 24.64 years and the treatment group at 24.91 years. Employment rates are also on the same level, with 87.45% in the control group compared to 85.77% in the treatment group. Each number in parentheses is the p-value of the row above.
+
+Main Finding 4
+
+@fig-job_sign_up displays the main result from the experimental intervention, illustrating the difference in job matching service sign-up rates between the control and treatment groups. In the control group, 23.48% of participants are willing to sign up their wives for the job service when provided with another gift card option. In the treatment group, where participants are given the actual proportion of support for WWOH, 32.02% of the respondents prefer to sign up their wives for the job service, which is a 32% increase (with a p-value of 0.0424).
+
+The combination of @tbl-summary_table and @fig-job_sign_up demonstrates the effects of the information intervention on participants' behavior and opinions toward women's labor market participation, revealing not only statistical significance but also practical importance in the context of social norms and labor supply outcomes in Saudi Arabia.
+
+The longer-term outcomes of the experiment on information intervention are shown in @fig-3 with error bars indicating the 95% confidence intervals for these proportions.
+
+The percentage of wives applying for a job outside the home is presented in @fig-3a. In the control group, 6.04% of wives apply for jobs outside, while 16.74% of wives in the treatment group choose to do so. The increase in the application rate is very obvious, nearly a 180% increase with a p-value of 0.001. @fig-3b shows the impact of informational intervention on outside-home job interviews. The interview rate in the control group is 1.1%, while the treatment group has 5.95%, with a p-value of 0.013. Both @fig-3a and @fig-3b display significant increases.
+
+Regarding the employment rates for this kind of job, @fig-3c shows that the employment rate increases from 7.69% to 9.73%. Although this indicates an increase, it is not statistically significant (p-value = 0.456), implying that while the intervention might have had an encouraging effect on job-seeking behavior, it does not translate into a significant difference in actual employment within the study period.
+
+To further explore the long-term influence, @fig-3d shows the share of husbands who report in a hypothetical question whether they would sign their wives up for driving lessons. The control group has a rate of 68.13%, and the treatment group has a rate of 78.38%, with a p-value of 0.03. The increase in husbands' willingness to sign their wives up for driving lessons implies that correcting information intervention influences beyond behaviors associated with female employment, creating potential impacts on broader social norms and attitudes toward women's rights in Saudi Arabia.
+
+Overall, the treatment has significant effects on both immediate and longer-term outcomes related to women's labor market participation based on @fig-3.
+User
+@fig-national_survey_misperception is made to illustrate the result of the national survey with 1460 married men aged from 18 to 35. The x-axis represents the share of others agreeing, and the y-axis is the cumulative probability that participants agree with the statement. Two vertical lines in @fig-national_survey_misperception represent the actual proportion of respondents who agree with the pro-WWOH statement. 
+
+There is no huge difference between the data about the control group and the treatment group. @fig-national_survey_misperception shows the average proportion of support, for both groups, is above 80%, while more than 90% of men underestimate the this proportion. The number of underestimations is larger than the number in the main experiment, one explanation is that participants are no longer being asked about their neighbours’ opinion.
+
+This figure, again, underscores the discrepancy between personal beliefs and perceived societal norms. The larger sample size of this national survey also strengthens the evidence that men privately support women's employment outside the home more than they assume others do, suggesting widespread misperceptions in Saudi society.
+
+ChatGPT
+@fig-national_survey_misperception is created to illustrate the results of the national survey conducted with 1460 married men aged from 18 to 35. The x-axis represents the share of others agreeing, and the y-axis denotes the cumulative probability that participants agree with the pro-WWOH statement. Two vertical lines in @fig-national_survey_misperception represent the actual proportion of respondents who agree with the pro-WWOH statement.
+
+There is no significant difference between the data concerning the control group and the treatment group. @fig-national_survey_misperception reveals that the average proportion of support for both groups is above 80%, while more than 90% of men underestimate this proportion. The number of underestimations is larger than the number observed in the main experiment, and one explanation is that participants are no longer being asked about their neighbors' opinions.
+
+This figure, once again, underscores the discrepancy between personal beliefs and perceived societal norms. The larger sample size of this national survey also bolsters the evidence that men privately support women's employment outside the home more than they assume others do, suggesting widespread misperceptions in Saudi society.
+
+
+
+▲
+
+
+
+
+how to read do file in r
+
+ChatGPT
+Reading a .do file, which is typically a script file for Stata (a statistical software package), directly into R for execution is not straightforward because .do files contain Stata commands, which are not directly compatible with R. However, if you want to read a .do file into R, you're probably looking to either execute Stata commands from R or to convert Stata syntax into R syntax manually. Here are a few approaches you might consider depending on your goal:
+
+1. Reading .do file contents as text
+If your aim is simply to read the .do file's contents into R for inspection or for manually translating Stata code into R, you can use the readLines() function in R to read the file as text:
+
+r
+Copy code
+# Replace "path/to/your/file.do" with the actual file path
+do_file_contents <- readLines("path/to/your/file.do")
+# Print the contents
+print(do_file_contents)
+2. Executing Stata commands from R
+If you have Stata installed and want to run .do files from R, you can use the system() function to call Stata from the command line. This approach requires that you have a command line version of Stata accessible from your system's PATH.
+
+r
+Copy code
+# Replace "path/to/your/file.do" with the actual file path
+# and stata with the correct command to run Stata on your system (e.g., stata, stata-mp)
+system("stata -e do path/to/your/file.do")
+This command tells Stata to execute the .do file, and the -e option opens Stata in non-interactive (or batch) mode.
+
+3. Converting Stata code to R
+Manually converting Stata code to R is often necessary if you're transitioning a project from Stata to R. There's no automatic converter for this process, but many Stata commands have direct equivalents in R or can be replicated using R packages like haven, foreign, or dplyr.
+
+For example, to read a Stata dataset in R, you can use the haven package:
+
+r
+Copy code
+# Install haven package if you haven't already
+# install.packages("haven")
+
+# Load the haven package
+library(haven)
+
+# Read a Stata data file (.dta)
+data <- read_dta("path/to/your/datafile.dta")
+This manual conversion process requires familiarity with both Stata and R syntax, as well as understanding the logic behind the Stata scripts you're converting.
+
+Additional Tools
+While there's no direct way to execute Stata .do files in R due to the differences in syntax and functionality between Stata and R, these approaches can help you work with Stata files or commands in the R environment. For more complex scripts or analyses, a manual review and conversion of the Stata code to R, possibly with the help of packages designed to work with Stata data files, is necessary.
+the variable q45_1_p2 exists in the dataset, but it shows error:
+✖ Column `q45_1_p2` doesn't exist.
+
+ChatGPT
+When you encounter an error message stating that a column doesn't exist in your dataset, there are several common reasons and solutions to explore. Here's how you can troubleshoot and resolve the issue in R:
+
+1. Check for Typographical Errors
+First, ensure that the column name q45_1_p2 is spelled correctly in your code. Even a small typographical error, like a capitalization mistake or an extra character, can cause this error.
+
+2. Verify Column Names in the Dataset
+Use the names() function to print all column names in your dataset to ensure that q45_1_p2 is actually one of them. This can also help you spot any discrepancies in spelling or capitalization.
+
+r
+Copy code
+# Replace 'your_dataset' with the actual name of your dataset variable
+print(names(your_dataset))
+3. Case Sensitivity
+R is case-sensitive, meaning that q45_1_p2 is different from Q45_1_P2. Ensure that your reference to the column matches its case exactly as it appears in the dataset.
+
+4. Data Frame/Subsetting Errors
+If you are subsetting your dataset or using specific packages (like dplyr), ensure you're referencing the dataset correctly. For example, if using dplyr, ensure you're using the correct verbs and syntax.
+
+5. Scope Issues
+If you're working inside a function or a loop, make sure that the dataset and its columns are accessible within that scope. Sometimes variables can be masked or not available in certain scopes.
+
+6. Non-standard Column Names
+If your column names have spaces, special characters, or start with numbers, R might require backticks to recognize them:
+
+r
+Copy code
+your_dataset$`q45_1_p2`
+7. Data Import Issues
+If the column was supposed to be included during data import (e.g., from a CSV file) but is missing, check your import statement and options. Sometimes, parameters like check.names = TRUE in the read.csv() function might alter column names by replacing or removing certain characters.
+
+Troubleshooting Steps
+Confirm the column exists with the correct name using names(your_dataset).
+Check your syntax and ensure you're using the correct data frame or tibble name.
+Use backticks for non-standard names if applicable.
+Re-import your data if you suspect the column was incorrectly loaded or altered during import.
+If after these checks the issue persists, consider revisiting how the dataset was initially processed or created. There might have been steps that inadvertently removed or renamed the column, or perhaps the dataset in memory is not the version you intended to work with.
+how can I move the label of x axis to the left in r using ggplot2 
+
+ChatGPT
+To adjust the position of the x-axis label in a ggplot2 plot in R, you would typically need to use the theme() function to modify the plot's theme settings. However, ggplot2 doesn't natively support moving the x-axis label to arbitrary positions like "left" or "right" directly via simple theme adjustments. The x-axis label is typically centered below the axis.
+
+That said, a creative solution involves using annotations or adjusting the plot margins to indirectly achieve the appearance of moving the x-axis label. Here's an approach to simulate moving the x-axis label to the left:
+
+Hide the default x-axis title.
+Use annotate() or geom_text() to add a custom text element where you want the label to appear.
+Here's an example that demonstrates this technique:
+
+r
+Copy code
+library(ggplot2)
+
+# Sample data
+df <- data.frame(x = 1:10, y = rnorm(10))
+
+# Basic plot
+p <- ggplot(df, aes(x, y)) +
+  geom_point() +
+  labs(x = NULL, y = "Y-axis label") + # Hide default x-axis label
+  theme(axis.title.x = element_blank()) + # Ensure x-axis title is removed
+  annotate("text", x = min(df$x), y = min(df$y) - diff(range(df$y)) * 0.1, label = "X-axis label", hjust = 0)
+
+# Display the plot
+print(p)
+In this example:
+
+labs(x = NULL, y = "Y-axis label") is used to remove the default x-axis label.
+theme(axis.title.x = element_blank()) ensures that the x-axis title is indeed removed to avoid duplication.
+annotate("text", ...) is used to add the custom x-axis label. Adjust the x and y parameters to position the label correctly. The hjust = 0 aligns the text to the left.
+Adjust the x and y coordinates in the annotate() function to position the label exactly where you want it relative to your data. This method is somewhat manual and might require some tweaking depending on the specific layout and scale of your plot.
+
+Remember, this is a workaround and might not work perfectly in all scenarios, especially when resizing the plot window or when the data changes significantly.
+how to add a verticle dash line in the histogram 
+
+ChatGPT
+To add a vertical dashed line to a histogram in R using ggplot2, you can use the geom_vline() function. This function allows you to specify the x-intercept where the line should be drawn, as well as additional aesthetic properties such as line type, color, and width. Here’s how you can do it:
+
+r
+Copy code
+library(ggplot2)
+
+# Sample data
+set.seed(123) # For reproducible results
+data <- data.frame(values = rnorm(100))
+
+# Create a histogram and add a vertical dashed line
+ggplot(data, aes(x = values)) +
+  geom_histogram(binwidth = 0.5, fill = "skyblue", color = "black") + # Histogram
+  geom_vline(xintercept = mean(data$values), linetype = "dashed", color = "red", size = 1) + # Vertical dashed line
+  theme_minimal() + # Optional: Cleaner theme
+  labs(title = "Histogram with Vertical Dashed Line",
+       subtitle = paste("Dashed line at mean:", mean(data$values)))
+In this example:
+
+geom_histogram() is used to create the histogram, where binwidth controls the width of the bins, and fill and color control the appearance of the bars.
+geom_vline() adds a vertical line to the plot. The xintercept argument specifies the x-axis value at which the line should be drawn—in this case, the mean of the data. The linetype argument is set to "dashed" to create a dashed line, and you can adjust the color and size to customize its appearance.
+theme_minimal() is applied to give the plot a cleaner look, but this is optional and customizable based on your preference.
+labs() is used to add a title and subtitle to the plot, providing context. The subtitle dynamically displays the value at which the vertical line is drawn using paste().
+This approach allows you to highlight specific values (like the mean, median, or any other statistic or threshold) in your histogram with a vertical dashed line, making it easier to visualize and interpret the distribution of your data in relation to that value.
+Error in `train_continuous()`:
+! Discrete value supplied to a continuous scale
+Run `rlang::last_trace()` to see where the error occurred.
+
+ChatGPT
+The error message you're encountering, Error in train_continuous(): ! Discrete value supplied to a continuous scale, typically occurs in R when using ggplot2 or other plotting functions that rely on continuous scales for numeric data, but the function receives categorical or discrete data instead. This can happen, for example, when you try to map a factor or a character vector to an aesthetic that expects numeric input, such as the x or y axis in a scatter plot, or when setting limits or breaks on a continuous scale with non-numeric values.
+
+Here's how you can troubleshoot and resolve this issue:
+
+1. Check Data Types
+Ensure that the variable you are using for the continuous scale is indeed numeric (integer or double) and not a factor or character. Use str(your_data) to check the structure of your data frame and see the types of each column.
+
+2. Convert Data Types if Necessary
+If the variable in question is stored as a factor or character but should be numeric, convert it using as.numeric() or as.integer(). However, be cautious with factors because converting a factor directly to numeric will give you the underlying integer codes, not the numeric values you might expect. Convert factors to characters, then to numeric to avoid this issue:
+
+r
+Copy code
+your_data$your_variable <- as.numeric(as.character(your_data$your_variable))
+3. Inspect Your Code for Discrete Values in Continuous Scales
+Look for any part of your code where you might be supplying a discrete value (like a character or factor) to a continuous scale. This includes setting limits, breaks, or values for scales (e.g., scale_x_continuous(), scale_y_continuous()).
+
+4. Example Fix
+Here's a small example of diagnosing and fixing this issue:
+
+r
+Copy code
+# Load necessary library
+library(ggplot2)
+
+# Sample data with a mistake: 'x' is accidentally converted to a factor
+df <- data.frame(x = factor(c(1, 2, 3, 4, 5)), y = c(1, 4, 9, 16, 25))
+
+# Attempting to plot can lead to the error
+# ggplot(df, aes(x = x, y = y)) + geom_line()
+
+# Correct the mistake by converting 'x' back to numeric
+df$x <- as.numeric(as.character(df$x))
+
+# Now, plotting should work without the error
+ggplot(df, aes(x = x, y = y)) + geom_line()
+5. Use rlang::last_trace()
+Following the error message's suggestion, run rlang::last_trace() right after the error occurs to get a more detailed traceback of where exactly the error happened. This can help you pinpoint the part of your plotting code that caused the issue.
+
+By addressing these potential causes, you should be able to resolve the error and successfully use continuous scales in your plots.
+ggsave failed
+
+ChatGPT
+When you encounter issues with ggsave() in R, which is used to save the last plot that you created using ggplot2, there are several common problems and solutions to consider. Here are some troubleshooting steps:
+
+1. Ensure a Plot Has Been Created
+ggsave() saves the last plot you created. Make sure you have actually created a plot using ggplot2 before calling ggsave(). If there's no plot, ggsave() can't save anything.
+
+2. Specify Filename and Path Correctly
+The first argument to ggsave() is the filename, including the file extension which determines the file format (e.g., .png, .pdf, .jpg, .svg). Make sure the filename and path are correctly specified. If you're using a directory path, ensure that the directory exists.
+
+r
+Copy code
+ggsave("plot.png") # Saves in the current working directory
+ggsave("~/Desktop/my_plot.pdf") # Specify a path and filename
+3. Check for Unsupported File Types
+Ensure you're saving the plot in a supported file format. ggsave() supports several file types, including PNG, PDF, SVG, and JPEG. Specifying an unsupported file format can cause the function to fail.
+
+4. Adjust Plot Dimensions and Units
+If ggsave() fails, it might be due to incorrectly specified plot dimensions or units. You can specify width, height, and units (e.g., "cm", "inches") in ggsave(). Ensure these are numeric and correctly formatted.
+
+r
+Copy code
+ggsave("plot.png", width = 10, height = 8, units = "cm")
+5. Device Compatibility
+Certain graphics devices may not be available on your system, especially when saving to formats like PDF or SVG. If you encounter errors related to the graphics device, try saving the plot in a different format.
+
+6. Permissions Issues
+If you're saving the file to a location where you don't have write permissions, ggsave() will fail. Make sure you have the necessary permissions for the directory you're trying to save the file in.
+
+7. Check for Errors in the Plotting Code
+Sometimes, the issue isn't with ggsave() itself but with the plot creation code. If there are errors or warnings when generating the plot, these could prevent ggsave() from saving the plot correctly. Run your plotting code separately to ensure it executes without errors.
+
+Example Usage of ggsave()
+r
+Copy code
+library(ggplot2)
+
+# Create a plot
+p <- ggplot(mtcars, aes(x = mpg, y = cyl)) + geom_point()
+
+# Display the plot
+print(p)
+
+# Save the plot
+ggsave("my_ggplot.png", plot = p, width = 5, height = 4, units = "in")
+In the example above, plot = p explicitly specifies the plot object to save. This is useful if you're not saving the last plot created or if you're saving multiple plots in a script.
+
+Debugging
+Ensure your R session is active, and you can view plots in R's plot window before attempting to save.
+If the problem persists, include any error messages you're receiving in your query for more specific advice.
+how to add numbers and p-values to each box of the box plot
+
+ChatGPT
+Adding numbers and p-values to each box in a boxplot in R can enhance the interpretability of your plots, especially when comparing groups. This can be achieved using the ggplot2 library in conjunction with additional functions for calculating statistics and annotating plots. Here's a step-by-step guide to achieve this:
+
+1. Create a Basic Boxplot
+First, create a basic boxplot using ggplot2. Let's assume you have a dataset df with a numeric variable value and a grouping variable group.
+
+r
+Copy code
+library(ggplot2)
+
+# Example dataset
+set.seed(123)
+df <- data.frame(
+  value = rnorm(120, mean = rep(1:4, each = 30), sd = 1),
+  group = factor(rep(1:4, each = 30))
+)
+
+# Basic boxplot
+p <- ggplot(df, aes(x = group, y = value)) +
+  geom_boxplot()
+2. Calculate Summary Statistics
+You might want to display the mean or median value within each box. Use stat_summary() to calculate and display these.
+
+r
+Copy code
+p <- p + stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
+  stat_summary(fun = mean, geom = "text", aes(label = sprintf("%.2f", ..y..)), vjust = -1)
+3. Calculate and Add P-values
+To add p-values, you'll need to perform statistical tests comparing your groups. For demonstration, let's use a simple pairwise t-test; for more complex comparisons or non-parametric tests, adjust accordingly.
+
+r
+Copy code
+library(ggpubr)
+
+# Assuming you're comparing groups pairwise
+p <- p + stat_compare_means(method = "t.test")
+The stat_compare_means function from the ggpubr package can automatically perform comparisons and add p-values to the plot. It's versatile and can be customized for different tests and comparison strategies.
+
+4. Complete Example
+Combining the steps above:
+
+r
+Copy code
+library(ggplot2)
+library(ggpubr)
+
+# Example dataset
+set.seed(123)
+df <- data.frame(
+  value = rnorm(120, mean = rep(1:4, each = 30), sd = 1),
+  group = factor(rep(1:4, each = 30))
+)
+
+# Boxplot with means, labels, and p-values
+ggplot(df, aes(x = group, y = value)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
+  stat_summary(fun = mean, geom = "text", aes(label = sprintf("%.2f", ..y..)), vjust = -1) +
+  stat_compare_means(method = "t.test")
+Notes
+Adjust vjust in stat_summary(geom = "text", ...) to position the mean value labels correctly without overlapping.
+The stat_compare_means function is flexible; you can specify the comparison method (method argument) and how groups are compared (e.g., pairwise or not).
+For more complex datasets or specific statistical tests, you might need to calculate p-values separately and then add them to the plot using annotate() or a similar method, especially if ggpubr does not support your specific testing scenario directly.
+This approach provides a straightforward way to enhance boxplots with critical statistical information, making them more informative for your analysis or presentations.

@@ -3,6 +3,17 @@
 # Authors: Boxuan Yi, Ruoxian Wu
 # Pre-requisites: none
 
+# Install packages we need
+install.packages('haven')
+install.packages('dplyr')
+install.packages('ggplot2')
+install.packages('readr')
+install.packages('here')
+install.packages('janitor')
+install.packages('knitr')
+install.packages('kableExtra')
+install.packages('tidyverse')
+
 # Load Packages
 library(tidyverse)
 library(janitor)

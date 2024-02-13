@@ -13,20 +13,6 @@ number-sections: true
 bibliography: references.bib
 ---
 
-```{r}
-#| message: false
-#| echo: false
-# Install packages we need
-install.packages('haven')
-install.packages('dplyr')
-install.packages('ggplot2')
-install.packages('readr')
-install.packages('here')
-install.packages('janitor')
-install.packages('knitr')
-install.packages('kableExtra')
-install.packages('tidyverse')
-```
 
 ```{r}
 #| message: false
@@ -63,7 +49,7 @@ Our reproduction seeks to address two findings written in the original paper, us
 ### Main experiment and Follow-up
 The original study recruited 500 married Saudi males aged 18 to 35 from Riyadh as participants. Initial contacts were established using a recruiter database, with further recruitment using a combination of snowball sampling and random street intercept [@MisperceivedSocialNorm]. 
 
-Participants were organized into 17 sessions, each comprising 30 individuals. The survey, administered through Qualtrics, encompassed questions about demographic information, opinions, agreement with statements, and estimations regarding the agreement of other  29 participants with each statement. Particularly, there were two statements about female labor participation. Following this, half of the participants were assigned to a treatment group randomly. Those in the treatment group were provided with information on the proportion of respondents who agreed or disagreed with each statement, while participants in the control group received no information. Respondents were then asked to make an incentivized choice between a five-dollar Amazon gift card and the opportunity to sign up their wives for a job matching platform [@MisperceivedSocialNorm]. Follow-up calls were conducted 3-5 months after the main experiment. These calls collected information about whether the wife was employed during the main experiment, whether the wife was currently employed, and if she was currently employed, whether the job was outside the home [@MisperceivedSocialNorm]. 
+Participants were organized into 17 sessions, each comprising 30 individuals. The survey, administered through Qualtrics, encompassed questions about demographic information, opinions, agreement with statements, and estimations regarding the agreement of other 29 participants with each statement. Particularly, there were two statements about female labor participation. Following this, half of the participants were assigned to a treatment group randomly. Those in the treatment group were provided with information on the proportion of respondents who agreed or disagreed with each statement, while participants in the control group received no information. Respondents were then asked to make an incentivized choice between a five-dollar Amazon gift card and the opportunity to sign up their wives for a job matching platform [@MisperceivedSocialNorm]. Follow-up calls were conducted 3-5 months after the main experiment. These calls collected information about whether the wife was employed during the main experiment, whether the wife was currently employed, and if she was currently employed, whether the job was outside the home [@MisperceivedSocialNorm]. 
 
 The main experiment dataset contains 500 observations and 36 variables. Variables include age, level of education, number of children, whether this man and his wife are employed now, number of people known in the group and other variables related to WWOH statements. The follow-up dataset contains similar demographic data and information about wives’ employment, interviews and driving lessons. There are 33 variables in the follow-up dataset. Details and explanations using visualization will be further discusses in the next section.
 

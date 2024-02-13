@@ -1,6 +1,7 @@
 #### Preamble ####
 # Purpose: Testing datasets
 # Author: Boxuan Yi, Ruoxian Wu
+# Prerequest: none
 
 library(dplyr)
 library(haven)
@@ -42,14 +43,12 @@ online_survey_clean |> filter(!is.na(t_outside_guess)) |> nrow()
 
 
 ## Raw data test
-
 # Data path
 datadir <- "/cloud/project/inputs/data/"
 raw_data_path <- file.path(datadir, "raw_data/01_main_exp_raw1.dta")
 
 # Read the data file
 df <- read_dta(raw_data_path)
-
 
 ## Missing data test
 
