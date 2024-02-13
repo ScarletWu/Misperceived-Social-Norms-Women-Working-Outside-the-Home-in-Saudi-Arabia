@@ -125,6 +125,7 @@ f2 <- df |> ggplot(aes(x = (outside_wedge/30) * 100))+
 
 f2
 ```
+
 The authors calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-wedge specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
 
 
@@ -348,8 +349,6 @@ p_value_applied <- t.test(applied_out_fl ~ factor(condition), data = df_filtered
 p_value_interviewed <- t.test(interviewed_out_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
 p_value_employed_now <- t.test(employed_now_out_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
 p_value_driving <- t.test(driving_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
-
-
 ```
 
 ```{r}
