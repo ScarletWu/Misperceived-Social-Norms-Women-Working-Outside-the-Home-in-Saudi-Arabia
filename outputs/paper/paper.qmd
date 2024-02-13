@@ -42,7 +42,6 @@ library(kableExtra)
 library(tidyverse)
 ```
 
-
 # Introduction
 Barriers to the employment of women exert a significant influence on female labor, presenting a constraint to increasing economic opportunities for women [@sciencedirectOrganizationalEconomic]. Saudi Arabia is a recognizable example of a country with a low rate of female labor force participation. In 2022, the female labor force participation rate, defined as the percentage of the female population aged 15 and above that is employed, is only 27.8% in Saudi Arabia. This is notably lower than the global average of 47.3%, while the male labor force participation rate in Saudi Arabia remains high at 80% [@worldbankLaborForce]. 
 
@@ -53,7 +52,6 @@ Based on survey responses and experiments results, they find that a large portio
 Our paper will follow a reproduction of Leonardo Bursztyn, Alessandra L. González, and David Yanagizawa-Drott’s findings. We seek to replicate two claims, (1) There is a wedge between the actual and perceived proportion of men supporting women working outside the home, and (2) Most Saudi men who privately support WWOH fail to understand that others do as well, and they are more likely to help their wives find jobs when they know the actual portion of men supporting WWOH. The experiments and surveys results we will try to replicate are (1) the actual portion of support of WWOH from young husbands, (2) the existence of misperception, and (3) the effects of correcting beliefs on female employment in Saudi Arabia. Our reproduction used the programming language R [@r], the analysis used the following packages: Haven[@rHaven], Dplyr [@rDplyr], Ggplot2 [@rGgplot2], Readr [@rReadr], Here [@rHere], Janitor [@rJanitor], KableExtra [@rKableExtra], Knitr [@rKnitr], Tidyverse [@rTidyverse].
 
 In the next section, we will discuss data including data source, methodology and features. After that, we will create a reproduction of the selected results to verify their data and their findings based on the data. In the last section, we will discuss the impact of informational intervention, the use of social proof to overcome harmful norms, and the inverse pattern of female labor force participation rate in Saudi Arabia during the pandemic. We will also conclude ethics, potential bias, and weaknesses topics, as well as a push for future research. 
-
 
 # Data
 ## Source
@@ -75,6 +73,11 @@ The online survey included approximately 1500 married Saudi men aged 18 to 35, r
 The dataset resulting from online survey comprises 1460 observations and 21 variables. These variables include condition, age, employed_now, employed_wife, employed_out_wife, children, and the responses to the survey questions for both groups as indicated above, along with participants’ confidence levels in some of the answers. Details and explanations using visualization will be further discusses in the next section.
 
 # Results
+We calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-wedge specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
+
+
+
+
 ```{r}
 #| message: false
 #| echo: false
@@ -125,9 +128,7 @@ f2 <- df |> ggplot(aes(x = (outside_wedge/30) * 100))+
 
 f2
 ```
-
-We calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-wedge specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
-
+\newpage
 @tbl-summary_table presents the successful randomization in the experiment, which is evident from the comparable statistics between the treatment and control groups. For instance, both groups have almost identical average age, with the control group at 24.64 years and the treatment group at 24.91 years. Similarly, the employment rates are also similar, with 87.45% employed in the control group as compared to 85.77% in the treatment group. Additionally, the percentage of participants with a college degree is also balanced, with 55.06% in the control group and 57.31% in the treatment group. These figures imply that any differences in the intervention outcomes can be confidently attributed to the treatment itself rather than to underlying demographic differences.
 
 ```{r}
@@ -412,7 +413,7 @@ driving_rate_4d
 ```
 
 
-\newpage
+
 @fig-national_survey_misperception is made to illustrate the result of the first national survey. There are two vertical lines that represent the actual proportion of respondents who agreed with the statement in @fig-national_survey_misperception, showing more than 80% of men underestimated the true proportion. The black line is for the control group and the red dashed line is for the treatment group. The lines reflect perceptions of participants about others' beliefs. The graph shows the support level of treatment group is mostly higher than control. This figure underscores a significant discrepancy between personal beliefs and perceived societal norms. The larger sample size of this national survey strengthens the evidence that men privately support women's employment outside the home more than they assume others do, suggesting widespread misperceptions about societal norms.
 
 ```{r}
