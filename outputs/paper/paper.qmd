@@ -362,7 +362,7 @@ p_value_driving <- t.test(driving_fl ~ factor(condition), data = df_filtered, na
 #| warning: false
 #| message: false
 #| layout-ncol: 2
-#| fig-subcap: ["Applied Rate","Interviewed Rate", "Employed Now Rate", "Driving Rate"]
+#| fig-subcap: ["Applied Rate", "Interviewed Rate", "Employed Now Rate", "Driving Rate"]
 
 # Applied Rate
 applied_rate_4a <- ggplot(df_stats, aes(x = factor(condition), y = applied_rate)) +
@@ -370,7 +370,7 @@ applied_rate_4a <- ggplot(df_stats, aes(x = factor(condition), y = applied_rate)
   geom_errorbar(aes(ymin = applied_rate_lo, ymax = applied_rate_hi), width = 0.2, color = "black") +
   geom_text(aes(label = sprintf("%.2f%%", applied_rate), y = applied_rate + 1), position = position_dodge(width = 0.7), vjust = 0) +
   annotate("text", x = 1, y = max(df_stats$applied_rate_hi) + 3, label = paste("p-value =", round(p_value_applied, 3)), size = 4) +
-  labs(x = "", y = "Percent", title = "Applied for job") +
+  labs(x = "", y = "Percent", title = "Panel A. Applied for job") +
   theme_minimal() +
   scale_x_discrete(labels = c("Control", "Treatment"))
 
@@ -383,7 +383,7 @@ interviewed_rate_4b <- ggplot(df_stats, aes(x = factor(condition), y = interview
   geom_errorbar(aes(ymin = interviewed_rate_lo, ymax = interviewed_rate_hi), width = 0.2, color = "black") +
   geom_text(aes(label = sprintf("%.2f%%", interviewed_rate), y = interviewed_rate_hi + 2), vjust = 0) +
   annotate("text", x = 1.5, y = max(df_stats$interviewed_rate_hi) + 5, label = paste("p-value =", round(p_value_interviewed, 3)), size = 4) +
-  labs(y = "Percent", x = "") +
+  labs(y = "Percent", x = "", title = "Panel B. Interviewed for job") +
   theme_minimal() +
   scale_x_discrete(labels = c("Control", "Treatment"))
 
@@ -396,7 +396,7 @@ employed_rate_4c <- ggplot(df_stats, aes(x = factor(condition), y = employed_now
   geom_errorbar(aes(ymin = employed_now_rate_lo, ymax = employed_now_rate_hi), width = 0.2, color = "black") +
   geom_text(aes(label = sprintf("%.2f%%", employed_now_rate), y = employed_now_rate_hi + 2), vjust = 0) +
   annotate("text", x = 1.5, y = max(df_stats$employed_now_rate_hi) + 5, label = paste("p-value =", round(p_value_employed_now, 3)), size = 4) +
-  labs(y = "Percent", x = "") +
+  labs(y = "Percent", x = "", title = "Panel C. Employed") +
   theme_minimal() +
   scale_x_discrete(labels = c("Control", "Treatment"))
 
@@ -409,7 +409,7 @@ driving_rate_4d <- ggplot(df_stats, aes(x = factor(condition), y = driving_rate)
   geom_errorbar(aes(ymin = driving_rate_lo, ymax = driving_rate_hi), width = 0.2, color = "black") +
   geom_text(aes(label = sprintf("%.2f%%", driving_rate), y = driving_rate_hi + 2), vjust = 0) +
   annotate("text", x = 1.5, y = max(df_stats$driving_rate_hi) + 5, label = paste("p-value =", round(p_value_driving, 3)), size = 4) +
-  labs(y = "Percent", x = "Condition") +
+  labs(y = "Percent", x = "", title = "Panel D. Driving lessons") +
   theme_minimal() +
   scale_x_discrete(labels = c("Control", "Treatment"))
 
