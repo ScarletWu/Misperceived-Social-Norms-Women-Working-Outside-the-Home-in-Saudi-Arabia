@@ -5,9 +5,6 @@
 A paper about women in Saudi Arabia
 
 ## File Structure
-hi
-
-
 The repo is structured as:
 
 -   `input/data` contains the data sources used in analysis including the raw data.
