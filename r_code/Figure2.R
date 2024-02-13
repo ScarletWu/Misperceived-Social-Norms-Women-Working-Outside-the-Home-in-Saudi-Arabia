@@ -20,30 +20,23 @@ q_self_mean <- mean(df[[paste0(q, "_self")]], na.rm = TRUE)
 df[[paste0(q, "_wedge_share")]] <- (df[[paste0(q, "_wedge")]] / 30) * 100
 
 # Plotting a histogram of the wedge share
-f2 <- ggplot(df, aes(x = .data[[paste0(q, "_wedge_share")]])) +
-  geom_histogram(binwidth = 10.5, fill = "lightgrey", color = "black") + # Adjust fill for contrast
-  scale_x_continuous("Wedge (guess % - objective %)", 
-                     breaks = seq(-100, 100, by = 10), 
-                     limits = c(-100, 100), # Explicitly set x-axis limits
-                     expand = c(0, 0.5)) +
-  scale_y_continuous("Density", expand = c(0.5, 0)) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "#FF4136", size = 0.5) + # Less prominent zero line
-  labs(title = "Distribution of Wedge (Guess % - Objective %)", # Add a title
-       caption = "Red dashed line represents the zero point") + # Add a caption
-  theme_minimal(base_size = 12) + # Use theme_minimal with a base font size
-  theme(
-    plot.background = element_blank(),
-    panel.background = element_rect(fill = "white", colour = "black"), # White background with border
-    axis.text = element_text(size = 12, color = "black"), # Ensure text is black for readability
-    axis.title = element_text(size = 14, color = "black"),
-    panel.grid.major = element_line(color = "lightgrey", size = 0.2), # Subtle gridlines
-    panel.grid.minor = element_blank(),
-    plot.title = element_text(hjust = 0.5), # Center the title
-    plot.caption = element_text(hjust = 0.5) # Center the caption
-  )
+
+f2 <- df |> ggplot(aes(x = (outside_wedge/30) * 100))+
+  geom_histogram(aes(y = after_stat(density)), bins = 20, 
+                 fill = "grey", 
+                 color = "black", 
+                 na.rm = TRUE, 
+                 breaks = seq(-100, 30, by = 10)) +   
+  geom_vline(xintercept = 0, color = "red4", linetype = "dashed") +
+  theme_minimal() +
+  scale_x_continuous(name= "Wedge (guess% - objective %)", 
+                     breaks = c(-100,-80,-60,-40,-20,0,20,40,60,80,100), 
+                     limits = c(-100,100)) +
+  scale_y_continuous(name = "Density", 
+                     breaks = c(0, 0.005, 0.01, 0.015),
+                     limits = c(0, 0.015))
+
 f2
-
-
 # Save the cleaned data
 figure_path <- "/cloud/project/outputs/figures/figure_2.png"
 
