@@ -4,7 +4,7 @@ Women Working Outside the Home in Saudi Arabia" (https://www.aeaweb.org/articles
 The data was downloaded, cleaned, simulated, analyzed, and then concluded. The paper and analysis is made reproducible so that it can be used again by others.
 
 ## LLM Usage
-ChatGPT was used for code modification, explanation and error explanations. The chat can be found in LLM/llm.rtf. No other LLM was used.
+ChatGPT was used for code modification, explanation, and grammar mistake correction. The chat can be found in LLM/llm.txt. No other LLM was used.
 
 ## File Structure
 The repo is structured as:
