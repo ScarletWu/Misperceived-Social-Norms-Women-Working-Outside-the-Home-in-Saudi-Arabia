@@ -2,7 +2,11 @@
 
 ## Overview
 
-A paper about women in Saudi Arabia
+This repo is a in depth analysis of the paper "Misperceived Social Norms:
+Women Working Outside the Home in Saudi Arabia". The data science workflow is followed as the data is downloaded, cleaned, simulated, and then analyzed. The paper and analysis is made reproducible so that it can be used again by others.
+
+## LLM Usage
+LLM's like ChatGPT have been used for code explanation, error explanations and fixes. The chat can be found in LLM/llm.rtf.
 
 ## File Structure
 The repo is structured as:
