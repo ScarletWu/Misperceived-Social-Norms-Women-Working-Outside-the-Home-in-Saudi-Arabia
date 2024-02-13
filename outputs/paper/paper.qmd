@@ -3,10 +3,10 @@ title: "Misperceived Social Norms about Women Working Outside the Home and Its E
 author: 
   - Boxuan Yi
   - Ruoxian Wu
-thanks: "Code and data are available at: https://github.com/ScarletWu/Misperceived-Social-Norms-Women-Working-Outside-the-Home-in-Saudi-Arabia. Replication on Social Science Reproduction platform available at: https://www.socialsciencereproduction.org/reproductions/1461/"
+thanks: "Code and data are available at: https://github.com/ScarletWu/Misperceived-Social-Norms-Women-Working-Outside-the-Home-in-Saudi-Arabia. Replication on Social Science Reproduction platform is available at: https://www.socialsciencereproduction.org/reproductions/1557/"
 date: "February 12, 2024"
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "Husbands who hold guardianship and discourage their wives from working outside the home are often perceived as the main reason for the low female workforce participation in Saudi Arabia. Bursztyn, González, and Yanagizawa-Drott explore this social norm through surveys, experiments and visualizations, revealing that a majority of young husbands in Saudi Arabia privately support women working outside the home but underestimate the support of other men, and correcting this misperception increases husbands’ willingness to help wives search for jobs. This paper replicates the data from their study to analyze young husbands’ actual opinions and perceptions, confirming similar findings. This paper also discusses strategies for reducing misperceptions and the unusual Saudi female employment rate during the pandemic."
 format: pdf
 toc: true
 number-sections: true
@@ -25,6 +25,7 @@ install.packages('here')
 install.packages('janitor')
 install.packages('knitr')
 install.packages('kableExtra')
+install.packages('tidyverse')
 ```
 
 ```{r}
@@ -38,6 +39,7 @@ library(here)
 library(janitor)
 library(knitr)
 library(kableExtra)
+library(tidyverse)
 ```
 
 
@@ -48,9 +50,9 @@ The prevailing societal norms in Saudi Arabia, characterized by a low rate of wo
 
 Based on survey responses and experiments results, they find that a large portion of young married men in Saudi Arabia privately support women working outside the home. Importantly, these men greatly underestimate the proportion of support among other similar men [@MisperceivedSocialNorm]. The study population is young married husbands aged 18 to 35 in Saudi Arabia. We aim to replicate the estimand that focuses on the effects of providing husbands with the true proportion of support. Their findings suggest that men who are given the actual proportion of their peers supporting WWOH are more likely to support their wives’ labor supply, and their wives are more likely to apply for job, attend interviews, be employed and enrol in driving lessons. Correcting misperceived beliefs yields positive impacts on females employment, and insufficient communication is associated with an increased likelihood of misperceptions [@MisperceivedSocialNorm].
 
-Our paper will follow a reproduction of Leonardo Bursztyn, Alessandra L. González, and David Yanagizawa-Drott’s findings. We seek to replicate two claims, (1) There is a wedge between the actual and perceived proportion of men supporting women working outside the home, and (2) Most Saudi men who privately support WWOH fail to understand that others do as well, and they are more likely to help their wives find jobs when they know the actual portion of men supporting WWOH. The experiments and surveys results we will try to replicate are (1) the actual portion of support of WWOH from young husbands, (2) the existence of misperception, and (3) the effects of correcting beliefs on wives in Saudi Arabia. Our reproduction used the programming language R [@r], the analysis used the following packages: Haven[@rHaven], Dplyr [@rDplyr], Ggplot2 [@rGgplot2], Readr [@rReadr], Here [@rHere], Janitor [@rJanitor], KableExtra [@rKableExtra], Knitr [@rKnitr].
+Our paper will follow a reproduction of Leonardo Bursztyn, Alessandra L. González, and David Yanagizawa-Drott’s findings. We seek to replicate two claims, (1) There is a wedge between the actual and perceived proportion of men supporting women working outside the home, and (2) Most Saudi men who privately support WWOH fail to understand that others do as well, and they are more likely to help their wives find jobs when they know the actual portion of men supporting WWOH. The experiments and surveys results we will try to replicate are (1) the actual portion of support of WWOH from young husbands, (2) the existence of misperception, and (3) the effects of correcting beliefs on female employment in Saudi Arabia. Our reproduction used the programming language R [@r], the analysis used the following packages: Haven[@rHaven], Dplyr [@rDplyr], Ggplot2 [@rGgplot2], Readr [@rReadr], Here [@rHere], Janitor [@rJanitor], KableExtra [@rKableExtra], Knitr [@rKnitr], Tidyverse [@rTidyverse].
 
-In the next section, we will discuss data including data source, methodology and features. After that, we will create a reproduction of the selected results to verify their data and their findings based on the data. In the last section, we will discuss our findings, including …. We will also conclude potential bias and weaknesses, as well as a push for future research
+In the next section, we will discuss data including data source, methodology and features. After that, we will create a reproduction of the selected results to verify their data and their findings based on the data. In the last section, we will discuss the impact of informational intervention, the use of social proof to overcome harmful norms, and the inverse pattern of female labor force participation rate in Saudi Arabia during the pandemic. We will also conclude ethics, potential bias, and weaknesses topics, as well as a push for future research. 
 
 
 # Data
@@ -102,40 +104,29 @@ df[[paste0(q, "_wedge_share")]] <- (df[[paste0(q, "_wedge")]] / 30) * 100
 
 ```
 
+
 ```{r}
-#| label: fig-1
-#| fig-cap: Histogram of Perceptual Gaps in Beliefs About Women Working Outside the Home
+#| label: fig-wedge
+#| fig-cap: Wedges in Perceptions of Others’ Beliefs (Main Experiment)
 #| echo: false
 #| warning: false
 #| message: false
 
+f2 <- df |> ggplot(aes(x = (outside_wedge/30) * 100))+
+  geom_histogram(aes(y = after_stat(density)), bins = 20, fill = "grey", color = "black", na.rm = TRUE, breaks = seq(-100, 30, by = 10)) +   
+  geom_vline(xintercept = 0, color = "red4", linetype = "dashed") +
+  theme_minimal() +
+  scale_x_continuous(name= "Wedge (guess% - objective %)", 
+                     breaks = c(-100,-80,-60,-40,-20,0,20,40,60,80,100), 
+                     limits = c(-100,100)) +
+  scale_y_continuous(name = "Density", 
+                     breaks = c(0, 0.005, 0.01, 0.015),
+                     limits = c(0, 0.015))
 
-# Plotting a histogram of the wedge share
-f2 <- ggplot(df, aes(x = .data[[paste0(q, "_wedge_share")]])) +
-  geom_histogram(binwidth = 10.5, fill = "lightgrey", color = "black") + 
-  scale_x_continuous("Wedge (guess % - objective %)", 
-                     breaks = seq(-100, 100, by = 20), 
-                     limits = c(-100, 100), 
-                     expand = c(0.1, 0.5)) +
-  scale_y_continuous("Density", expand = c(0.5, 0)) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "#FF4136", size = 0.5) + # Less prominent zero line
-  labs(title = "Distribution of Wedge (Guess % - Objective %)", # Add a title
-       caption = "Red dashed line represents the zero point") + # Add a caption
-  theme_minimal(base_size = 12) + 
-  theme(
-    plot.background = element_blank(),
-    panel.background = element_rect(fill = "white", colour = "black"), 
-    axis.text = element_text(size = 12, color = "black"), 
-    axis.title = element_text(size = 14, color = "black"),
-    panel.grid.major = element_line(color = "lightgrey", size = 0.2), 
-    panel.grid.minor = element_blank(),
-    plot.title = element_text(hjust = 0.5), 
-    plot.caption = element_text(hjust = 0.5) 
-  )
 f2
 ```
 
-The authors calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-1 specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
+The authors calculated "wedges" which represent the difference between what participants guessed and the actual percentage of agreement among their session peers regarding women working outside the home (WWOH). The negative wedge indicates that the participant underestimated the support for WWOH. Conversely, a positive wedge suggests that the participant overestimated the support for WWOH. We replicate the histograms to check the distribution of the wedges between participants' beliefs about the support for WWOH among their session participants and the actual levels of support. @fig-wedge specifically maps the distribution of these "wedges" -- the differences between each participant's guess and the actual percentage of session participants who agreed with the pro-WWOH statement. It was found that more than half of participants underestimated the support for WWOH. There is a clear gap between perceived and actual social norms regarding women's work outside the home. The left skew of the histogram would indicate that a majority of participants underestimated the true level of support for WWOH.
 
 
 By using the regression analysis, we examine the treatment effect on the participants' likelihood to sign up for a job matching service for their wives. The treatment variable is significant across all model specifications, with coefficients ranging from 0.0853 to 0.0899. The constant term varies considerably across different model specifications, suggesting differing baseline propensities for signing up absent the treatment. The p-values for the treatment effect, under various robustness checks such as robust standard errors, wild bootstrap, and permutation test, all indicate significance, ranging from 0.008 to 0.038. These results reinforcing the treatment's positive impact on sign-up rates (@tbl-summary_table).
@@ -254,6 +245,7 @@ treatment_group <- c(t_rows, t_age, t_age_sd, t_ch, t_ch_sd, t_cd, t_emp, t_we, 
 ```{r}
 #| message: false
 #| echo: false
+#| warning: false
 #| label: tbl-summary_table
 #| tbl-cap: Summary Statistics (Main Experiment)
 table1 <- cbind(total_group, control_group, treatment_group)
@@ -357,8 +349,6 @@ p_value_applied <- t.test(applied_out_fl ~ factor(condition), data = df_filtered
 p_value_interviewed <- t.test(interviewed_out_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
 p_value_employed_now <- t.test(employed_now_out_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
 p_value_driving <- t.test(driving_fl ~ factor(condition), data = df_filtered, na.rm = TRUE)$p.value
-
-
 ```
 
 ```{r}
@@ -452,6 +442,7 @@ data_frame$outside_value <- as.numeric(data_frame$outside_value)
 ```{r}
 #| message: false
 #| echo: false
+#| warning: false
 #| label: fig-national_survey_misperception
 #| fig-cap: Misperceptions about Others’ Beliefs (National Survey)
 data_frame |>
@@ -480,16 +471,10 @@ data_frame |>
 
 
 # Discussion
-
-## 1. Impact of Informational Intervention: 
-
+## Impact of Informational Intervention: 
 The research findings have highlighted the importance of correcting misperceived social norms, not only to increase women's participation in the labor market but also to make progress in broader social norms and attitudes towards women's rights and autonomy. The study shows that interventions aimed at challenging and changing societal norms can have a significant impact on women's economic participation and social development. For instance, the study found that after an information intervention, more husbands were willing to sign up their wives for driving lessons, indicating a shift towards more progressive attitudes regarding women's mobility and independence. These changes can contribute to economic development by increasing the labor force and promoting gender equality. The researchers suggest that similar interventions could be effective in other contexts where misperceptions about social norms limit women's economic participation. This approach can offer valuable insights for policymakers and organizations aiming to promote gender equality and economic development, emphasizing the role of accurate information in challenging and changing societal norms. In today's world, digital platforms and social media hold a significant impact on the formation of public opinion and social norms. By making strategic use of these technologies, we can effectively disseminate accurate information and correct any misconceptions. We can leverage online platforms to share data on societal attitudes towards WWOH. This will enable interventions to reach a much wider audience, facilitating a more rapid and widespread change in perceptions. 
 
-
-
-
-## 2. Broader Social Proof Implications
-
+## Broader Social Proof Implications
 It is possible to overcome harmful norms in cultural and societal settings by using social proof. 
 
 One study @Counternormative found that communicating the increasing popularity of environmentally friendly behaviors encouraged individuals to adopt these behaviors themselves, demonstrating the power of social proof in effecting change in environmental contexts. This suggests that highlighting positive changes in societal behaviors can be effective in encouraging the adoption of new, more beneficial norms and practices, rather than focusing on static norms.
@@ -500,7 +485,15 @@ These studies show that by understanding and addressing specific normative belie
 
 Integrating these studies enhances our understanding of how social proof can be applied across different issues and cultural contexts to promote positive social change.
 
-## Third discussion point
+## Inverse Pattern of Saudi female labor force participation rate during pandemic
+According to the Gender Data Portal from The World Bank, the global average male labor force participation had a decrease of 1.6%, reaching 58.6% in 2020, followed by a rebound to 59.5% in 2021. In fact, this trend was observed across various countries, irrespective of gender. 
+
+For example, the Canadian female labor force participation rates in 2019, 2020 and 2021 were 61.4%, 59.5%, 60.6%, respectively, and the Canadian male labor force participation rates for the same years were 70.1%, 68.6%, 69.6%. A similar pattern is discernible in India, where the female labor force participation rates in 2019, 2020 and 2021 were 23.7%, 22.7%, 23%, while corresponding male rates stood at 73.6%, 72.3%, 72.7% [@worldbankLaborForce].
+
+Interestingly, Saudi Arabia exhibited an inverse pattern. While the Saudi male labor force participation rate remained relatively stable, the female rate, along with that of the United Arab Emirates, increased in 2020 and then decreased in 2021. To be more specific, the Saudi female labor force participation rate had a notable increase of 4.9% (nearly one-fifth of the total), reaching 29.5% in 2020, and then declining to 27.8% in 2021. Similarly, female rate in United Arab Emirates increased by 4.2% to 61% in 2020, but decreased to 52.8% in 2021 [@worldbankLaborForce]. 
+
+The observed fluctuation in world labor force participation rates, particularly Saudi Arabia, leads to speculation on the underlying factors driving these trends. The impact of quarantine is a significant factor, as individuals working from home remained mostly unaffected, unlike those in traditional office settings. This is likely the reason behind the abnormal employment pattern among Saudi women at the start of the pandemic. Moreover, the contrasting pattern in Saudi female labor force participation rate, compared to the world trend, highlights the phenomenon  that many employed females tend to work at home, either willingly or due to traditional social norms. The 2020 surge could indicate potential willingness among Saudi women to explore employment opportunities.
+
 
 ## Bias, Ethics and Weaknesses
 Throughout the survey and experiment, all participants granted permissions for the collection of data. After gathering information, the experimenters ensured that all responses remain confidential and anonymous, so the data we used for replication in this paper was also anonymous, with only the last three digits of their phone numbers retained. As a result, there are no ethical concerns during the process and in the paper.
