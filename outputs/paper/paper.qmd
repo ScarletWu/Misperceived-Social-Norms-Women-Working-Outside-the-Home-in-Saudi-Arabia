@@ -43,6 +43,9 @@ In the next section, we will discuss data including data source, methodology and
 ## Source
 The replication package is obtained from 'Misperceived Social Norms: Women Working Outside the Home in Saudi Arabia', a paper from American Economic Association [@MisperceivedSocialNorm]. Our reproduction seeks to address two findings written in the original paper, using results authors collected through the main experiment, follow-up, an online survey, and the programming language R [@r].
 
+## Data cleaning
+The raw dataset underwent a cleaning process to address missing values and recalibrate variables. This included updating the labor_demand_guess from multiple sources if it was missing, recalculating signed_up_number based on specific conditions, and removing out-of-range values from the age. New variables like college_deg and married were generated based on education and marital status, respectively. The dataset also saw the introduction of proportionate variables such as num_know_per and num_mfs_per. After refining variables for analysis, such as outside_guess, semiseg_guess, and mwage_guess, and their associated calculations, irrelevant variables were dropped. The cleaned data was then saved and is now ready for further analysis.
+
 ## Methodology and Features
 ### Main experiment and Follow-up
 The original study recruited 500 married Saudi males aged 18 to 35 from Riyadh as participants. Initial contacts were established using a recruiter database, with further recruitment using a combination of snowball sampling and random street intercept [@MisperceivedSocialNorm]. 
