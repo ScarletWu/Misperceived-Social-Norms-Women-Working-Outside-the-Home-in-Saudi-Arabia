@@ -3,7 +3,7 @@ title: "Misperceived Social Norms about Women Working Outside the Home and Its E
 author: 
   - Boxuan Yi
   - Ruoxian Wu
-thanks: "Code and data are available at: https://github.com/ScarletWu/Misperceived-Social-Norms-Women-Working-Outside-the-Home-in-Saudi-Arabia. Replication on Social Science Reproduction platform is available at: https://www.socialsciencereproduction.org/reproductions/1557/"
+thanks: "Code and data are available at: https://github.com/ScarletWu/Misperceived-Social-Norms-Women-Working-Outside-the-Home-in-Saudi-Arabia. Replication on Social Science Reproduction platform is available at: https://www.socialsciencereproduction.org/reproductions/1557/. The original paper and its replicated package can be found here: https://www.aeaweb.org/articles?id=10.1257/aer.20180975."
 date: "February 12, 2024"
 date-format: long
 abstract: "Husbands who hold guardianship and discourage their wives from working outside the home are often perceived as the main reason for the low female workforce participation in Saudi Arabia. We use data and surveys from the American Economic Association to analyze this perception, revealing that a majority of young husbands in Saudi Arabia privately support women working outside the home but underestimate the support of other men. This paper also discusses the positive effects brought about by correcting this misperception, strategies for reducing information intervention, and the unusual Saudi female employment rate during the pandemic."
@@ -41,7 +41,7 @@ In the next section, we will discuss data including data source, methodology and
 
 # Data
 ## Source
-The paper used for replication is from American Economic Association, American Economic Review. The replication package is downloaded from Misperceived Social Norms: Women Working Outside the Home in Saudi Arabia webpage, under Additional Materials. The original paper and its replicated package can be found here: https://www.aeaweb.org/articles?id=10.1257/aer.20180975
+The paper used for replication is from American Economic Association, American Economic Review. The replication package is downloaded from Misperceived Social Norms: Women Working Outside the Home in Saudi Arabia webpage, under Additional Materials.
 
 Our reproduction seeks to address two findings written in the original paper, using results they collected from the main experiment, its follow-up and online survey. 
 
