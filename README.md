@@ -9,6 +9,7 @@ The repo is structured as:
 -   `outputs/paper` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper. 
 -   `outputs/figures` and `outputs/table` contains the table and figures replicated, while `r_code` contains the code that generate the replicated visualizations.
 -   `scripts` contains the R scripts used to simulate, download and clean the data.
+-   `scripts/sketch` contains sketches for datasets and visualizations.
 -   `LLM` contains the link and text of LLM usage.
 
 ## LLM Usage
