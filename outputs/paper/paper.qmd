@@ -3,7 +3,7 @@ title: "Misperceptions Regarding Women's Employment Outside the Home and Their I
 author: 
   - Boxuan Yi
   - Ruoxian Wu
-thanks: "Code and data are available at: https://github.com/ScarletWu/Misperceived-Social-Norms-Women-Working-Outside-the-Home-in-Saudi-Arabia. Replication on Social Science Reproduction platform is available at: https://www.socialsciencereproduction.org/reproductions/1557/. The original paper and its replicated package can be found here: https://www.aeaweb.org/articles?id=10.1257/aer.20180975."
+thanks: "Code and data are available at: https://github.com/ScarletWu/Misperceived-Social-Norms-Women-Working-Outside-the-Home-in-Saudi-Arabia. Replication on Social Science Reproduction platform is available at: https://www.socialsciencereproduction.org/reproductions/1557/index?step=0. The original paper and its replicated package can be found here: https://www.aeaweb.org/articles?id=10.1257/aer.20180975."
 date: "February 12, 2024"
 date-format: long
 abstract: "Husbands who hold guardianship and discourage their wives from working outside the home are often perceived as the main reason for the low female workforce participation in Saudi Arabia. This paper analyzes this common perception, revealing that a majority of young husbands in Saudi Arabia privately support women working outside the home but underestimate the support of other men. This paper also discusses the positive effects brought about by correcting this misperception, strategies for reducing information intervention, and the unusual Saudi female employment rate during the pandemic."

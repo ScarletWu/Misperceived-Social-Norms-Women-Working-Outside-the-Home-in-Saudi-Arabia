@@ -1,6 +1,8 @@
 ## Overview
 This repo replicated data from "Misperceived Social Norms:
 Women Working Outside the Home in Saudi Arabia" (https://www.aeaweb.org/articles?id=10.1257/aer.20180975), conducted an analysis and discussion about the females working outside the home in Saudi Arabia. The data was downloaded, cleaned, simulated, analyzed, and then concluded. The paper and analysis is made reproducible so that it can be used again by others.
+The reproduction on social sciemce reproduction platform is available here: https://www.socialsciencereproduction.org/reproductions/1557/index?step=0
+
 In this repo, WWOH stands for women working outside the home.
 
 ## File Structure
